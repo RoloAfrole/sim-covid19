@@ -5,12 +5,13 @@ import pickle
 from datetime import datetime
 
 
-def plot_sim(status, basename=None):
+def plot_sim(status, basename=None, save=True):
 
     infl_array = np.asarray(status.h_infl)
     seg_array = np.asarray(status.h_seg)
     x_array = np.arange(infl_array.size)
     plt.plot(x_array, infl_array, label="infl")
+    plt.plot(x_array, seg_array, label="segregated")
     plt.legend()
 
     if basename is None:
@@ -18,7 +19,10 @@ def plot_sim(status, basename=None):
 
     filename = '{}.png'.format(basename)
 
-    plt.savefig(filename, bbox_inches='tight', pad_inches=0.0)
+    if save:
+        plt.savefig(filename, bbox_inches='tight', pad_inches=0.0)
+    else:
+        plt.show()
 
 
 def save_status(status, basename=None):

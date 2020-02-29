@@ -121,14 +121,11 @@ def infl_zone(infl_prob, zone_rate, pop, zone_hour):
     tmp_pop = init_pop
     infled_num = 0
     sum_infled_num = 0
-    with tqdm(range(zone_hour)) as pb_hour:
-        pb_hour.set_description('Hour')
+    for i in range(zone_hour):
+        infled_num = infl_hour(infl_prob, zone_rate, tmp_pop)
+        tmp_pop -= infled_num
 
-        for i in pb_hour:
-            infled_num = infl_hour(infl_prob, zone_rate, tmp_pop)
-            tmp_pop -= infled_num
-
-            sum_infled_num += infled_num
+        sum_infled_num += infled_num
 
     return sum_infled_num
 
