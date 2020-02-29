@@ -15,15 +15,15 @@ FLAGS.total_population = 120000000
 FLAGS.init_infl = 10
 FLAGS.init_segregated = 0
 
-FLAGS.rate_red = 0.5
-FLAGS.rate_green = 0.1
-FLAGS.rate_blue = 0.01
+FLAGS.rate_red = 0.1
+FLAGS.rate_green = 0.01
+FLAGS.rate_blue = 0.001
 
 FLAGS.red_per_day = 8
 FLAGS.green_per_day = 8
 FLAGS.blue_per_day = 8
 
-FLAGS.prob_segregate = 0.01
+FLAGS.prob_segregate = 0.1
 
 mode = True
 

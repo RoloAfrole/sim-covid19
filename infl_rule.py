@@ -91,6 +91,8 @@ def sim_infl(status, sim_range):
         pb_day.set_description('Day')
         for day in pb_day:
             infl_day(status)
+            if status.pop <= 0:
+                break
 
     return status
 
