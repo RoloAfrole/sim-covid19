@@ -101,7 +101,8 @@ def infl_day(status):
     sum_infled = 0
 
     for zone_p in status.get_zone_p():
-        infled_num = infl_zone(infl_prob, zone_p[0], tmp_pop, zone_p[1])
+        # infled_num = infl_zone(infl_prob, zone_p[0], tmp_pop, zone_p[1])
+        infled_num = infl_zone_w_rate(infl_prob, zone_p[0], tmp_pop, zone_p[1])
         tmp_pop -= infled_num
         sum_infled += infled_num
 
@@ -114,6 +115,18 @@ def infl_day(status):
     status.update_pop(new_pop, new_infl, new_seg)
 
     return status
+
+
+def infl_zone_w_rate(infl_prob, zone_rate, pop, zone_hour):
+    init_pop = pop
+    tmp_pop = init_pop
+    infled_num = 0
+    sum_infled_num = 0
+    infled_num = infl_hour(infl_prob, zone_rate * zone_hour, tmp_pop)
+
+    sum_infled_num += infled_num
+
+    return sum_infled_num
 
 
 def infl_zone(infl_prob, zone_rate, pop, zone_hour):

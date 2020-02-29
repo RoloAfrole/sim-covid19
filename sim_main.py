@@ -11,13 +11,13 @@ FLAGS = flags.FLAGS
 
 FLAGS.sim_range = 2
 
-FLAGS.total_population = 100000000
+FLAGS.total_population = 120000000
 FLAGS.init_infl = 10
 FLAGS.init_segregated = 0
 
 FLAGS.rate_red = 0.5
-FLAGS.rate_green = 0.2
-FLAGS.rate_blue = 0.05
+FLAGS.rate_green = 0.1
+FLAGS.rate_blue = 0.01
 
 FLAGS.red_per_day = 8
 FLAGS.green_per_day = 8
