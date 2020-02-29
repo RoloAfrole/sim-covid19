@@ -32,7 +32,7 @@ def sim(argv):
     if mode:
         calc(FLAGS)
     else:
-        basename = './data/202002291019_wc'
+        basename = './data/base_30day'
         plot(basename)
 
 

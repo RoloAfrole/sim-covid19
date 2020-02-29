@@ -92,9 +92,9 @@ def sim_infl(status, sim_range):
     with tqdm(range(sim_range), leave=False) as pb_day:
         pb_day.set_description('Day')
         for day in pb_day:
-            infl_day(status)
             if status.pop <= 0:
                 break
+            infl_day(status)
 
     return status
 
