@@ -25,14 +25,14 @@ FLAGS.blue_per_day = 8
 
 FLAGS.prob_segregate = 0.1
 
-mode = True
+mode = False
 
 
 def sim(argv):
     if mode:
         calc(FLAGS)
     else:
-        basename = '202002291520'
+        basename = './data/202002291019_wc'
         plot(basename)
 
 

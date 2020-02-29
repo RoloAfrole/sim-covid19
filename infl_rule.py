@@ -23,6 +23,8 @@ flags.DEFINE_float('prob_segregate', 0.01, 'probability of segregation')
 
 flags.DEFINE_integer('sim_range', 90, 'day of sim')
 
+flags.DEFINE_bool('sim_per_hour', False, 'sim each hour or each day')
+
 FLAGS = flags.FLAGS
 
 
@@ -103,15 +105,17 @@ def infl_day(status):
     sum_infled = 0
 
     for zone_p in status.get_zone_p():
-        # infled_num = infl_zone(infl_prob, zone_p[0], tmp_pop, zone_p[1])
-        infled_num = infl_zone_w_rate(infl_prob, zone_p[0], tmp_pop, zone_p[1])
+        if FLAGS.sim_per_hour:
+            infled_num = infl_zone(infl_prob, zone_p[0], tmp_pop, zone_p[1])
+        else:
+            infled_num = infl_zone_w_rate(infl_prob, zone_p[0], tmp_pop, zone_p[1])
         tmp_pop -= infled_num
         sum_infled += infled_num
 
     segregeted_num = segregate_infl(status.infl)
 
     new_pop = status.pop - sum_infled
-    new_infl = status.infl + sum_infled
+    new_infl = status.infl + sum_infled - segregeted_num
     new_seg = status.seg + segregeted_num
 
     status.update_pop(new_pop, new_infl, new_seg)
