@@ -100,7 +100,7 @@ def sim_infl(status, sim_range):
 
 
 def infl_day(status):
-    infl_prob = status.infl / status.pop
+    infl_prob = status.infl / (status.pop + status.infl)
     tmp_pop = status.pop
     sum_infled = 0
 
