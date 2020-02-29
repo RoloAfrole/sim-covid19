@@ -116,6 +116,8 @@ def infl_day(status):
 
     new_pop = status.pop - sum_infled
     new_infl = status.infl + sum_infled - segregeted_num
+    if new_infl <= 0:
+        new_infl = 1
     new_seg = status.seg + segregeted_num
 
     status.update_pop(new_pop, new_infl, new_seg)
