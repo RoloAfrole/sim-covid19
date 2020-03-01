@@ -108,7 +108,8 @@ def infl_day(status):
         if FLAGS.sim_per_hour:
             infled_num = infl_zone(infl_prob, zone_p[0], tmp_pop, zone_p[1])
         else:
-            infled_num = infl_zone_w_rate(infl_prob, zone_p[0], tmp_pop, zone_p[1])
+            infled_num = infl_zone_w_rate(infl_prob, zone_p[0], tmp_pop,
+                                          zone_p[1])
         tmp_pop -= infled_num
         sum_infled += infled_num
 

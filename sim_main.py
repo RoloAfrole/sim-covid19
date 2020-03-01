@@ -33,6 +33,8 @@ def sim(argv):
         calc(FLAGS)
     else:
         basename = './data/base_30day'
+        # basename = './data/202003010352_wn'
+        # basename = './data/202003010555_wc'
         plot(basename)
 
 
@@ -48,7 +50,8 @@ def calc(config=FLAGS):
 
 def plot(basename):
     status = util.load_status(basename)
-    util.plot_sim(status, basename)
+    util.plot_sim(status, basename, title=None)
+    util.save_as_csv(status, basename)
 
 
 if __name__ == '__main__':

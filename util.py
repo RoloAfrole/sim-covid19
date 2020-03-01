@@ -5,14 +5,20 @@ import pickle
 from datetime import datetime
 
 
-def plot_sim(status, basename=None, save=True):
+def plot_sim(status, basename=None, save=True, title=None):
 
     infl_array = np.asarray(status.h_infl)
     seg_array = np.asarray(status.h_seg)
     x_array = np.arange(infl_array.size)
-    plt.plot(x_array, infl_array, label="infl")
-    plt.plot(x_array, seg_array, label="segregated")
+    plt.plot(x_array, infl_array, label="Latent", marker='o')
+    plt.plot(x_array, seg_array, label="Segregated", marker='v')
     plt.legend()
+
+    if title is not None:
+        plt.title(title)
+
+    plt.xlabel('Day')
+    plt.ylabel('Population')
 
     if basename is None:
         basename = datetime.now().strftime('%Y%m%d%H%M')
@@ -43,3 +49,16 @@ def load_status(basename):
     with open(filename, 'rb') as f:
         status = pickle.load(f)
     return status
+
+
+def save_as_csv(status, basename):
+    infl_array = np.asarray(status.h_infl)
+    seg_array = np.asarray(status.h_seg)
+    filename = '{}.csv'.format(basename)
+
+    stacked = np.stack([infl_array, seg_array])
+    np.savetxt(filename,
+               stacked.T,
+               delimiter=',',
+               fmt='%d',
+               header='infl,segregated')
