@@ -102,7 +102,7 @@ def sim_infl(status, sim_range):
 
 def infl_day(status):
     infl_prob = status.infl / (status.pop + status.infl)
-    if FLAGS.delay_infl > 0 and len[status.h_infl] >= FLAGS.delay_infl:
+    if FLAGS.delay_infl > 0 and len(status.h_infl) >= FLAGS.delay_infl:
         delayed_infl = status.h_infl[-FLAGS.delay_infl] - (
             status.seg - status.h_seg[-FLAGS.delay_infl])
         infl_prob = delayed_infl / (status.h_pop[-FLAGS.delay_infl] +
