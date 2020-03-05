@@ -24,6 +24,7 @@ flags.DEFINE_float('prob_segregate', 0.01, 'probability of segregation')
 flags.DEFINE_integer('sim_range', 90, 'day of sim')
 
 flags.DEFINE_bool('sim_per_hour', False, 'sim each hour or each day')
+flags.DEFINE_integer('delay_infl', 0, 'delay of having infl')
 
 FLAGS = flags.FLAGS
 
@@ -101,6 +102,11 @@ def sim_infl(status, sim_range):
 
 def infl_day(status):
     infl_prob = status.infl / (status.pop + status.infl)
+    if FLAGS.delay_infl > 0:
+        delayed_infl = status.h_infl[-FLAGS.delay_infl] - (
+            status.seg - status.h_seg[-FLAGS.delay_infl])
+        infl_prob = delayed_infl / (status.h_pop[-FLAGS.delay_infl] +
+                                    delayed_infl)
     tmp_pop = status.pop
     sum_infled = 0
 
