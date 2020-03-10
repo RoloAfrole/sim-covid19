@@ -10,8 +10,8 @@ def plot_sim(status, basename=None, save=True, title=None):
     infl_array = np.asarray(status.h_infl)
     seg_array = np.asarray(status.h_seg)
     x_array = np.arange(infl_array.size)
-    plt.plot(x_array, infl_array, label="Latent", marker='o')
-    plt.plot(x_array, seg_array, label="Segregated", marker='v')
+    plt.plot(x_array, infl_array, label="Infected", marker='o')
+    plt.plot(x_array, seg_array, label="Removed", marker='v')
     plt.legend()
 
     if title is not None:
