@@ -89,6 +89,18 @@ def initalize_status(config):
     return status
 
 
+class Status_Detail(Status):
+    def __init__(self, init_pop, init_infl, init_seg, rate_red, rate_green,
+                 rate_blue, red_per_day, green_per_day, blue_per_day):
+        super(Status, self).__init__(init_pop, init_infl, init_seg, rate_red,
+                                     rate_green, rate_blue, red_per_day,
+                                     green_per_day, blue_per_day)
+
+class Day_Setting(object):
+    def __init__():
+        pass
+
+
 def sim_infl(status, sim_range):
     with tqdm(range(sim_range), leave=False) as pb_day:
         pb_day.set_description('Day')
