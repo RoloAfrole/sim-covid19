@@ -96,10 +96,6 @@ class Status_Detail(Status):
                                      rate_green, rate_blue, red_per_day,
                                      green_per_day, blue_per_day)
 
-class Day_Setting(object):
-    def __init__():
-        pass
-
 
 def sim_infl(status, sim_range):
     with tqdm(range(sim_range), leave=False) as pb_day:
