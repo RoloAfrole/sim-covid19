@@ -11,18 +11,22 @@ class Manager(object):
         self.status = status
         self.srange = srange
 
-    def Calc(self):
-        pass
+    def calc_day(self, t):
+        day = self.srange.get_day(t)
 
 
 class History(object):
     def __init__(self):
         self.history = []
-        self.status = []
-        self.srange = []
 
-    def add(self, record):
-        pass
+    def set_init_record(self, status):
+        self.add(Day.get_initial_day(), status)
+
+    def add(self, day, status):
+        record = {}
+        record['day'] = day
+        record['status'] = status
+        self.history.append(record)
 
 
 class Status(object):
@@ -63,8 +67,15 @@ class SimRange(object):
         self.start_position = start_position
         self.end_position = end_position
 
+    def get_day(self, t):
+        return self.days[t]
 
 class Day(object):
     def __init__(self, date, group):
         self.date = date
         self.group = group
+
+    @staticmethod
+    def get_initial_day():
+        from settings import Day_Groups
+        return Day('initail day', Day_Groups['init_day'])
