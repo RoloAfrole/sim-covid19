@@ -38,35 +38,91 @@ class Status(object):
         self.citys = citys
 
     def calc_day(self, day):
-        records = [c.get_values(day) for c in self.citys]
         records = {c.name: c.get_values(day) for c in self.citys}
 
-        records = self.calc_first(records, day)
-        for t in range(24):
-            records = self.calc_hour(records, day)
-        records = self.calc_end(records, day)
+        records = self.calc_first(records)
+        records = self.calc_hour(records)
+        records = self.calc_end(records)
 
-    def calc_first(self, records, day):
+    def calc_first(self, records):
+        for k in records.keys():
+            temp_N = 0
+            temp_I = 0
+            temp_N += records[k]['inner'].shape[0]
+            temp_I += Person.num_with_condition(records[k]['inner'],
+                                                ct.const.INF)
+            records[k]['inner_chs'] = np.empty(records[k]['inner'].shape[0])
+            for v in records.values():
+                if k in v['move_out']:
+                    temp_N += v['move_out'][k].shape[0]
+                    temp_I += Person.num_with_condition(
+                        v['move_out'][k], ct.const.INF)
+                    v['move_out']['{}_chs'.format(k)] = np.empty(
+                        v['move_out'][k].shape[0])
+
+            records[k]['N_today'] = temp_N
+            records[k]['I_today'] = temp_I
+            records[k]['correction_NI'] = temp_I / temp_N
+
         return records
 
-    def calc_hour(self, records, day, hour):
+    def calc_hour(self, records):
+        for k in records.keys():
+            areas = records[k]['areas']
+            p_inf = self.p_inf(records[k]['inner'][::, 4:], areas)
+            v_inf = self.vector_chs(p_inf, *p_inf.shape)
+            records[k]['inner_chs'] = np.stack(
+                [records[k]['inner_chs'], v_inf])
+            for v in records.values():
+                if k in v['move_out']:
+                    p_inf = self.p_inf(v['move_out'][k][::, 4:], areas)
+                    v_inf = self.vector_chs(p_inf, *p_inf.shape)
+                    v_inf = self.vector_chs(p_inf, v['move_out'][k].shape[0])
+                    v['move_out']['{}_chs'.format(k)] = np.stack(
+                        [v['move_out']['{}_chs'.format(k)], v_inf])
+
         return records
 
-    def calc_end(self, records, day):
+    def calc_end(self, records):
+        for k in records.keys():
+            p_r = records[k]['p_remove']
+            v_rem = self.vector_chs(p_r, records[k]['inner'].shape[0])
+            records[k]['inner_chs'] = np.stack(
+                [records[k]['inner_chs'], v_rem])
+            for v in records.values():
+                if k in v['move_out']:
+                    v_rem = self.vector_chs(p_r, v['move_out'][k].shape[0])
+                    v['move_out']['{}_chs'.format(k)] = np.stack(
+                        [v['move_out']['{}_chs'.format(k)], v_rem])
+
         return records
+
+    @staticmethod
+    def vector_chs(p, *l):
+        rand = np.random.rand(*l)
+        v_chs = rand < p
+        return v_chs
+
+    @staticmethod
+    def p_inf(peaple_pattern, areas):
+        return np.sum(peaple_pattern * areas.T, axis=2)
 
 
 class City(object):
-    def __init__(self, name, peaple, areas, move_out):
+    def __init__(self, name, peaple, areas, move_out, p_remove):
         self.name = name
         self.peaple = peaple
         self.areas = areas
         self.move_out = move_out
+        self.p_remove = p_remove
 
     def get_values(self, day):
         values = {}
         values['move_out'], values['inner'] = self.sim_move_out(day)
-        values['areas'] = [area.get_param(day) for area in self.areas]
+        values['areas'] = np.array(
+            [area.get_param(day) for area in self.areas])
+        values['p_remove'] = self.p_remove
+        return values
 
     def sim_move_out(self, day):
         targets = self.get_targets()
@@ -86,7 +142,21 @@ class Person(object):
         self.active_pattern = active_pattern
 
     def get_values(self, day):
-        return [self.id]
+        from settings import Active_Pattern
+        pattern = Active_Pattern.pattern(self.group, self.condition,
+                                         self.pattern, day)
+        person = np.zeros([4, pattern.shape[1]])
+        person[0][0] = self.id
+        person[1][0] = self.group
+        person[2][0] = self.condition
+        person[3][0] = self.active_pattern
+
+        return np.vstack([person, pattern])
+
+    @staticmethod
+    def num_with_condition(values, target):
+        n = np.count_nonzero(values[::, 2:3, 0] == target)
+        return n
 
 
 class Area(object):
@@ -110,10 +180,10 @@ class MoveOut(object):
         t_np = np.array([t.get_values(day) for t in targets])
         num_mo = {}
         for k, v in self.get_pattern(day).items():
-            m_num = t_np.size * v
+            m_num = t_np.shape[0] * v
             num_mo[k] = m_num
 
-        new_t_np = np.random.choice(t_np, t_np.size, replace=False)
+        new_t_np = np.random.choice(t_np, t_np.shape[0], replace=False)
         splited = np.split(new_t_np, list(num_mo.values()))
 
         mo = {}

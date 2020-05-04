@@ -1,4 +1,4 @@
-
+import numpy as np
 
 class Group(object):
     def __init__(self, id):
@@ -14,3 +14,9 @@ class Group_Day(Group):
 Day_Groups = {
     'init_day': Group_Day(0),
 }
+
+
+class Active_Pattern(object):
+    @staticmethod
+    def pattern(group, condition, pattern, day):
+        return np.empty([24, 3])
