@@ -51,14 +51,11 @@ class Status(object):
             temp_N += records[k]['inner'].shape[0]
             temp_I += Person.num_with_condition(records[k]['inner'],
                                                 ct.const.INF)
-            records[k]['inner_chs'] = np.empty(records[k]['inner'].shape[0])
             for v in records.values():
                 if k in v['move_out']:
                     temp_N += v['move_out'][k].shape[0]
                     temp_I += Person.num_with_condition(
                         v['move_out'][k], ct.const.INF)
-                    v['move_out']['{}_chs'.format(k)] = np.empty(
-                        v['move_out'][k].shape[0])
 
             records[k]['N_today'] = temp_N
             records[k]['I_today'] = temp_I
@@ -71,15 +68,12 @@ class Status(object):
             areas = records[k]['areas']
             p_inf = self.p_inf(records[k]['inner'][::, 4:], areas)
             v_inf = self.vector_chs(p_inf, *p_inf.shape)
-            records[k]['inner_chs'] = np.stack(
-                [records[k]['inner_chs'], v_inf])
+            records[k]['inner_chs'] = v_inf
             for v in records.values():
                 if k in v['move_out']:
                     p_inf = self.p_inf(v['move_out'][k][::, 4:], areas)
                     v_inf = self.vector_chs(p_inf, *p_inf.shape)
-                    v_inf = self.vector_chs(p_inf, v['move_out'][k].shape[0])
-                    v['move_out']['{}_chs'.format(k)] = np.stack(
-                        [v['move_out']['{}_chs'.format(k)], v_inf])
+                    v['move_out']['{}_chs'.format(k)] = v_inf
 
         return records
 
