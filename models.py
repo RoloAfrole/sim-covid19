@@ -29,7 +29,7 @@ class History(object):
     def add(self, day, status):
         record = {}
         record['day'] = day
-        record['status'] = status
+        record['status'] = status.get_record_for_history()
         self.h.append(record)
 
 
@@ -43,6 +43,7 @@ class Status(object):
         records = self.calc_first(records)
         records = self.calc_hour(records)
         records = self.calc_end(records)
+        self.save_records(records)
 
     def calc_first(self, records):
         for k in records.keys():
@@ -65,7 +66,7 @@ class Status(object):
 
     def calc_hour(self, records):
         for k in records.keys():
-            areas = records[k]['areas']
+            areas = records[k]['areas'] * records[k]['correction_NI']
             p_inf = self.p_inf(records[k]['inner'][::, 4:], areas)
             v_inf = self.vector_chs(p_inf, *p_inf.shape)
             records[k]['inner_chs'] = v_inf
@@ -88,6 +89,28 @@ class Status(object):
                     v_rem = self.vector_chs(p_r, v['move_out'][k].shape[0])
                     v['move_out']['{}_chs'.format(k)] = np.stack(
                         [v['move_out']['{}_chs'.format(k)], v_rem])
+
+        return records
+
+    def save_records(self, records):
+        for k, v in self.citys.items():
+            v.refrect_changes(records[k])
+
+    def get_record_for_history(self):
+        records = {}
+        total = {}
+        v_keys = None
+        for k, v in self.citys.items():
+            records[k] = v.get_records()
+            v_keys = records[k].keys()
+
+        for k in v_keys:
+            total[k] = 0
+
+        for v in records.values():
+            for k in v.keys():
+                total[k] += v[k]
+        records['total'] = total
 
         return records
 
@@ -124,8 +147,42 @@ class City(object):
         return mo, inner
 
     def get_targets(self):
-        targets = [p for p in self.peaple if p.condition != ct.const.REM]
+        # targets = [p for p in self.peaple if p.condition != ct.const.REM]
+        targets = self.peaple
         return targets
+
+    def refrect_changes(self, record, city_names):
+        mo = record['move_out']
+        r_list = [record['inner']].extend([mo[k] for k in city_names])
+        c_list = [record['inner_chs']
+                  ].extend([mo['{}_chs'.format(k)] for k in city_names])
+
+        stacked_record = np.vstack(r_list)
+        changes = np.vstack(c_list)
+        i_chs = self.get_infected_changes(changes)
+        rem_chs = self.get_removed_changes(changes)
+        ids = stacked_record[::, :1]
+        self.change_peaple(ids, i_chs, rem_chs)
+
+    def change_peaple(self, ids, i_chs, rem_chs):
+        for p in self.peaple:
+            target = np.where(ids == p.id)
+            p.change(i_chs[target][0], rem_chs[target][0])
+
+    def get_records(self, parameter_list):
+        pass
+
+    @staticmethod
+    def get_infected_changes(changes):
+        i_chs = changes[::, :-1]
+        all_true = np.ones(i_chs.shape[1], dtype='bool')
+        chs = np.dot(i_chs, all_true).reshape((-1, 1))
+        return chs
+
+    @staticmethod
+    def get_removed_changes(changes):
+        rem_chs = changes[::, -1:]
+        return rem_chs
 
 
 class Person(object):
@@ -146,6 +203,14 @@ class Person(object):
         person[3][0] = self.active_pattern
 
         return np.vstack([person, pattern])
+
+    def change(self, infected, removed):
+        if removed and self.condition == ct.const.INF:
+            self.condition = ct.const.REM
+
+        if infected and self.condition == ct.const.SUS:
+            self.condition = ct.const.INF
+
 
     @staticmethod
     def num_with_condition(values, target):
