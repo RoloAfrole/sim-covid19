@@ -1,17 +1,16 @@
 import numpy as np
-
-import random
-from tqdm import tqdm
-from absl import flags
-
 import constant as ct
 
 
 class Manager(object):
-    def __init__(self, history, status, srange):
-        self.history = history
+    def __init__(self, status, srange, history=None):
         self.status = status
         self.srange = srange
+
+        self.history = history
+        if self.history is None:
+            self.history = History()
+            self.history.set_init_record(self.status)
 
     def calc_day(self, t):
         day = self.srange.get_day(t)
@@ -269,11 +268,18 @@ class SimRange(object):
 
 
 class Day(object):
-    def __init__(self, date, group):
+    def __init__(self, date, group, holiday=None):
         self.date = date
         self.group = group
+        self.holiday = holiday
+        if self.holiday is None:
+            self.holiday = self.isHoliday(self.date)
 
     @staticmethod
     def get_initial_day():
         from settings import Day_Groups
-        return Day('initail day', Day_Groups['init_day'])
+        return Day('initail day', Day_Groups['init_day'], False)
+
+    @staticmethod
+    def isHoliday(date):
+        return False

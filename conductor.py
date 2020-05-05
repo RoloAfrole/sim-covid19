@@ -1,6 +1,3 @@
-import numpy as np
-
-import random
 from tqdm import tqdm
 from absl import flags
 
@@ -26,3 +23,6 @@ class Conductor(object):
         with tqdm(range(start, end), leave=False) as pb_day:
             for day in pb_day:
                 self.manager.calc_day(day)
+
+    def plot(self):
+        pass
