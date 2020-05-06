@@ -15,7 +15,9 @@ class Initializer(object):
         self.config
 
     def create_status(self):
-        raise NotImplementedError
+        citys = self.create_citys()
+        status = models.Status(citys)
+        return status
 
     def create_srange(self):
         raise NotImplementedError
@@ -23,8 +25,10 @@ class Initializer(object):
     def create_citys(self):
         raise NotImplementedError
 
-    def create_manager(self):
-        raise NotImplementedError
+    def create_manager(self, histroy=None):
+        status = self.create_status()
+        srange = self.create_srange()
+        return models.Manager(status, srange, history=histroy)
 
     def _create_days(self, start_date, condition_list):
         days = []
@@ -38,6 +42,64 @@ class Initializer(object):
                 tmp_date = tmp_date + unit_day
 
         return days
+
+    def _create_citys(self, condition):
+        citys = []
+        for c in condition:
+            citys.append(models.City(
+                name=c['name'],
+                peaple=self._create_peaple(c['peaple']),
+                areas=self._create_areas(c['areas']),
+                move_out=self._create_move_out(c['move_out']),
+                p_remove=c['p_remove']))
+        return citys
+
+    def _create_peaple(self, condition):
+        peaple = []
+        ids = 0
+        for c in condition:
+            pop = c['population']
+            total_pop = [int(r*pop) for r in c['condition_prop']]
+            for condition_idx, tp in enumerate(total_pop):
+                for i in range(tp):
+                    peaple.append(
+                        models.Person(
+                            id=ids,
+                            group=c['id'],
+                            condition=condition_idx,
+                            group_name=c['name']
+                        )
+                    )
+                    ids += 1
+
+        return peaple
+
+    def _create_areas(self, condition):
+        areas = []
+        for c in condition:
+            areas.append(models.Area(c['name'], c['id'], c['patterns']))
+        return areas
+
+    def _create_move_out(self, condition):
+        move_out = models.MoveOut(condition)
+        return move_out
+
+    @staticmethod
+    def person_group(id, group_name, population, conditons):
+        dic = {}
+        dic['id'] = id
+        dic['name'] = group_name
+        dic['population'] = population
+        dic['condition_prop'] = conditons
+        return dic
+
+    @staticmethod
+    def area_group(id, group_name, patterns):
+        dic = {}
+        dic['id'] = id
+        dic['name'] = group_name
+        dic['patterns'] = patterns
+        return dic
 
 
 class Default_Izer(Initializer):
@@ -62,3 +124,136 @@ class Default_Izer(Initializer):
                                  start_position=0,
                                  end_position=len(days))
         return srange
+
+    def create_citys(self):
+        condition = [{
+            'name':
+            'Tokyo',
+            'p_remove':
+            0.1,
+            'peaple': [
+                self.person_group(0, 'general1', 1000, [0.8, 0.1, 0.1, 0.0]),
+                self.person_group(1, 'general2', 1000, [0.8, 0.1, 0.1, 0.0]),
+            ],
+            'areas': [
+                self.area_group(
+                    0, 'ncloud', {
+                        'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                    }),
+                self.area_group(
+                    1, 'mid', {
+                        'before_SoE': [[0.002] * 24, [0.002] * 24],
+                        '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                        '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                        '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                        '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                        '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                        'after_SoE': [[0.002] * 24, [0.002] * 24],
+                    }),
+                self.area_group(
+                    2, 'croud', {
+                        'before_SoE': [[0.02] * 24, [0.02] * 24],
+                        '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                        '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                        '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                        '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                        '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                        'after_SoE': [[0.02] * 24, [0.02] * 24],
+                    }),
+            ],
+            'move_out': {
+                'before_SoE': {
+                    'Outer': 0.1
+                },
+                '1week_SoE': {
+                    'Outer': 0.1
+                },
+                '2week_SoE': {
+                    'Outer': 0.1
+                },
+                '3week_SoE': {
+                    'Outer': 0.1
+                },
+                '4week_SoE': {
+                    'Outer': 0.1
+                },
+                '5__week_SoE': {
+                    'Outer': 0.1
+                },
+                'after_SoE': {
+                    'Outer': 0.1
+                },
+            },
+        }, {
+            'name':
+            'Outer',
+            'p_remove':
+            0.1,
+            'peaple': [
+                self.person_group(0, 'general1', 1000, [0.8, 0.1, 0.1, 0.0]),
+                self.person_group(1, 'general2', 1000, [0.8, 0.1, 0.1, 0.0]),
+            ],
+            'areas': [
+                self.area_group(
+                    0, 'ncloud', {
+                        'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                    }),
+                self.area_group(
+                    1, 'mid', {
+                        'before_SoE': [[0.002] * 24, [0.002] * 24],
+                        '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                        '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                        '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                        '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                        '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                        'after_SoE': [[0.002] * 24, [0.002] * 24],
+                    }),
+                self.area_group(
+                    2, 'croud', {
+                        'before_SoE': [[0.02] * 24, [0.02] * 24],
+                        '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                        '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                        '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                        '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                        '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                        'after_SoE': [[0.02] * 24, [0.02] * 24],
+                    }),
+            ],
+            'move_out': {
+                'before_SoE': {
+                    'Outer': 0.1
+                },
+                '1week_SoE': {
+                    'Outer': 0.1
+                },
+                '2week_SoE': {
+                    'Outer': 0.1
+                },
+                '3week_SoE': {
+                    'Outer': 0.1
+                },
+                '4week_SoE': {
+                    'Outer': 0.1
+                },
+                '5__week_SoE': {
+                    'Outer': 0.1
+                },
+                'after_SoE': {
+                    'Outer': 0.1
+                },
+            },
+        }]
+
+        return self._create_citys(condition)

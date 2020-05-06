@@ -26,5 +26,5 @@ Day_Groups = {
 
 class Active_Pattern(object):
     @staticmethod
-    def pattern(group, condition, pattern, day):
+    def pattern(group, condition, day):
         return np.empty([24, 3])

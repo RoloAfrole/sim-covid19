@@ -66,12 +66,12 @@ class Status(object):
     def calc_hour(self, records):
         for k in records.keys():
             areas = records[k]['areas'] * records[k]['correction_NI']
-            p_inf = self.p_inf(records[k]['inner'][::, 4:], areas)
+            p_inf = self.p_inf(records[k]['inner'][::, 3:], areas)
             v_inf = self.vector_chs(p_inf, *p_inf.shape)
             records[k]['inner_chs'] = v_inf
             for v in records.values():
                 if k in v['move_out']:
-                    p_inf = self.p_inf(v['move_out'][k][::, 4:], areas)
+                    p_inf = self.p_inf(v['move_out'][k][::, 3:], areas)
                     v_inf = self.vector_chs(p_inf, *p_inf.shape)
                     v['move_out']['{}_chs'.format(k)] = v_inf
 
@@ -185,21 +185,20 @@ class City(object):
 
 
 class Person(object):
-    def __init__(self, id, group, condition, active_pattern):
+    def __init__(self, id, group, condition, group_name='None'):
         self.id = id
         self.group = group
         self.condition = condition
-        self.active_pattern = active_pattern
+        self.group_name = group_name
 
     def get_values(self, day):
         from settings import Active_Pattern
         pattern = Active_Pattern.pattern(self.group, self.condition,
-                                         self.pattern, day)
+                                         day)
         person = np.zeros([4, pattern.shape[1]])
         person[0][0] = self.id
         person[1][0] = self.group
         person[2][0] = self.condition
-        person[3][0] = self.active_pattern
 
         return np.vstack([person, pattern])
 
@@ -210,7 +209,6 @@ class Person(object):
         if infected and self.condition == ct.const.SUS:
             self.condition = ct.const.INF
 
-
     @staticmethod
     def num_with_condition(values, target):
         n = np.count_nonzero(values[::, 2:3, 0] == target)
@@ -218,21 +216,20 @@ class Person(object):
 
 
 class Area(object):
-    def __init__(self, name, group):
+    def __init__(self, name, group, patterns):
         self.name = name
         self.group = group
+        self.patterns = patterns
 
     def get_param(self, day):
-        pass
+        day_group_name = day.group.name
+        idx = 1 if day.isHoliday else 0
+        return self.patterns[day_group_name][idx]
 
 
 class MoveOut(object):
-    def __init__(self):
-        self.pattern = {
-            'grouptype': {
-                'cityname': 0.1,
-            },
-        }
+    def __init__(self, pattern):
+        self.pattern = pattern
 
     def move(self, targets, day):
         t_np = np.array([t.get_values(day) for t in targets])
@@ -252,9 +249,7 @@ class MoveOut(object):
         return mo, inner
 
     def get_pattern(self, day):
-        if day.group not in self.pattern:
-            return {'None': 0.0}
-        return self.pattern[day.group]
+        return self.pattern[day.group.name]
 
 
 class SimRange(object):
