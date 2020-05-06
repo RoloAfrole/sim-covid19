@@ -132,8 +132,10 @@ class Default_Izer(Initializer):
             'p_remove':
             0.1,
             'peaple': [
-                self.person_group(0, 'general1', 1000, [0.8, 0.1, 0.1, 0.0]),
-                self.person_group(1, 'general2', 1000, [0.8, 0.1, 0.1, 0.0]),
+                self.person_group(0, 'general1', 7000000,
+                                  [0.999996, 0.000002, 0.000002, 0.0]),
+                self.person_group(1, 'general2', 7000000,
+                                  [0.999996, 0.000002, 0.000002, 0.0]),
             ],
             'areas': [
                 self.area_group(
@@ -172,19 +174,19 @@ class Default_Izer(Initializer):
                     'Outer': 0.1
                 },
                 '1week_SoE': {
-                    'Outer': 0.1
+                    'Outer': 0.08
                 },
                 '2week_SoE': {
-                    'Outer': 0.1
+                    'Outer': 0.06
                 },
                 '3week_SoE': {
-                    'Outer': 0.1
+                    'Outer': 0.05
                 },
                 '4week_SoE': {
-                    'Outer': 0.1
+                    'Outer': 0.05
                 },
                 '5__week_SoE': {
-                    'Outer': 0.1
+                    'Outer': 0.05
                 },
                 'after_SoE': {
                     'Outer': 0.1
@@ -196,8 +198,10 @@ class Default_Izer(Initializer):
             'p_remove':
             0.1,
             'peaple': [
-                self.person_group(0, 'general1', 1000, [0.8, 0.1, 0.1, 0.0]),
-                self.person_group(1, 'general2', 1000, [0.8, 0.1, 0.1, 0.0]),
+                self.person_group(0, 'general1', 7000000,
+                                  [0.999996, 0.000002, 0.000002, 0.0]),
+                self.person_group(1, 'general2', 7000000,
+                                  [0.999996, 0.000002, 0.000002, 0.0]),
             ],
             'areas': [
                 self.area_group(
@@ -233,25 +237,25 @@ class Default_Izer(Initializer):
             ],
             'move_out': {
                 'before_SoE': {
-                    'Outer': 0.1
+                    'Tokyo': 0.2
                 },
                 '1week_SoE': {
-                    'Outer': 0.1
+                    'Tokyo': 0.18
                 },
                 '2week_SoE': {
-                    'Outer': 0.1
+                    'Tokyo': 0.12
                 },
                 '3week_SoE': {
-                    'Outer': 0.1
+                    'Tokyo': 0.12
                 },
                 '4week_SoE': {
-                    'Outer': 0.1
+                    'Tokyo': 0.12
                 },
                 '5__week_SoE': {
-                    'Outer': 0.1
+                    'Tokyo': 0.12
                 },
                 'after_SoE': {
-                    'Outer': 0.1
+                    'Tokyo': 0.2
                 },
             },
         }]

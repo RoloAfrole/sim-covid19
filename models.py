@@ -99,13 +99,10 @@ class Status(object):
     def get_record_for_history(self):
         records = {}
         total = {}
-        v_keys = None
         for c in self.citys:
             records[c.name] = c.get_records()
-            v_keys = records[c.name].keys()
-
-        for k in v_keys:
-            total[k] = 0
+            for k in records[c.name].keys():
+                total[k] = 0
 
         for v in records.values():
             for k in v.keys():

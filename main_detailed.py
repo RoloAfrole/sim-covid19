@@ -25,6 +25,7 @@ def calc(config=FLAGS):
     initzr = Default_Izer(config)
     conductor = Conductor(config, initzr)
     conductor.sim()
+    print(conductor.manager.history.h[-1]['status'])
     # util.plot_sim(results, basename)
     # util.save_status(results, basename)
 
