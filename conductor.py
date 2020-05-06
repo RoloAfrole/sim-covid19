@@ -3,9 +3,9 @@ from absl import flags
 
 
 class Conductor(object):
-    def __init__(self, config):
+    def __init__(self, config, initializer):
         self.config = config
-        self.manager = None
+        self.manager = initializer.create_manager()
 
     def set_condition(self, condition):
         pass
