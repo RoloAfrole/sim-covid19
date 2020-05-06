@@ -12,7 +12,7 @@ import models
 
 class Initializer(object):
     def __init__(self, config):
-        self.config
+        self.config = config
 
     def create_status(self):
         citys = self.create_citys()

@@ -81,27 +81,28 @@ class Status(object):
         for k in records.keys():
             p_r = records[k]['p_remove']
             v_rem = self.vector_chs(p_r, records[k]['inner'].shape[0])
-            records[k]['inner_chs'] = np.stack(
-                [records[k]['inner_chs'], v_rem])
+            records[k]['inner_chs'] = np.hstack(
+                (records[k]['inner_chs'], v_rem.reshape(-1, 1)))
             for v in records.values():
                 if k in v['move_out']:
                     v_rem = self.vector_chs(p_r, v['move_out'][k].shape[0])
-                    v['move_out']['{}_chs'.format(k)] = np.stack(
-                        [v['move_out']['{}_chs'.format(k)], v_rem])
+                    v['move_out']['{}_chs'.format(k)] = np.hstack(
+                        (v['move_out']['{}_chs'.format(k)],
+                         v_rem.reshape(-1, 1)))
 
         return records
 
     def save_records(self, records):
-        for k, v in self.citys.items():
-            v.refrect_changes(records[k])
+        for c in self.citys:
+            c.refrect_changes(records[c.name], [cc.name for cc in self.citys])
 
     def get_record_for_history(self):
         records = {}
         total = {}
         v_keys = None
-        for k, v in self.citys.items():
-            records[k] = v.get_records()
-            v_keys = records[k].keys()
+        for c in self.citys:
+            records[c.name] = c.get_records()
+            v_keys = records[c.name].keys()
 
         for k in v_keys:
             total[k] = 0
@@ -152,9 +153,10 @@ class City(object):
 
     def refrect_changes(self, record, city_names):
         mo = record['move_out']
-        r_list = [record['inner']].extend([mo[k] for k in city_names])
-        c_list = [record['inner_chs']
-                  ].extend([mo['{}_chs'.format(k)] for k in city_names])
+        r_list = [record['inner']]
+        r_list.extend([mo[k] for k in city_names if k in mo])
+        c_list = [record['inner_chs']]
+        c_list.extend([mo['{}_chs'.format(k)] for k in city_names if k in mo])
 
         stacked_record = np.vstack(r_list)
         changes = np.vstack(c_list)
@@ -165,11 +167,19 @@ class City(object):
 
     def change_peaple(self, ids, i_chs, rem_chs):
         for p in self.peaple:
-            target = np.where(ids == p.id)
+            target = np.where(ids[:, 0, 0] == p.id)
             p.change(i_chs[target][0], rem_chs[target][0])
 
-    def get_records(self, parameter_list):
-        pass
+    def get_records(self):
+        key_list = []
+        record = {}
+        for p in self.peaple:
+            if p.condition not in key_list:
+                key_list.append(p.condition)
+                record[p.condition] = 0
+            record[p.condition] += 1
+
+        return record
 
     @staticmethod
     def get_infected_changes(changes):
@@ -193,9 +203,8 @@ class Person(object):
 
     def get_values(self, day):
         from settings import Active_Pattern
-        pattern = Active_Pattern.pattern(self.group, self.condition,
-                                         day)
-        person = np.zeros([4, pattern.shape[1]])
+        pattern = Active_Pattern.pattern(self.group, self.condition, day)
+        person = np.zeros([3, pattern.shape[1]])
         person[0][0] = self.id
         person[1][0] = self.group
         person[2][0] = self.condition
@@ -238,8 +247,10 @@ class MoveOut(object):
             m_num = t_np.shape[0] * v
             num_mo[k] = m_num
 
-        new_t_np = np.random.choice(t_np, t_np.shape[0], replace=False)
-        splited = np.split(new_t_np, list(num_mo.values()))
+        # new_t_np = np.random.choice(t_np, t_np.shape[0], replace=False)
+        new_t_np = t_np[np.random.
+                        choice(t_np.shape[0], t_np.shape[0], replace=False), :]
+        splited = np.split(new_t_np, [int(v) for v in num_mo.values()])
 
         mo = {}
         for i, k in enumerate(num_mo.keys()):

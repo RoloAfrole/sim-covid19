@@ -9,7 +9,7 @@ flags.DEFINE_string('f', '', 'kernel')
 # Simulation Parameters
 FLAGS = flags.FLAGS
 
-mode = False
+mode = True
 
 
 def sim(argv):
@@ -30,4 +30,7 @@ def calc(config=FLAGS):
 
 
 if __name__ == '__main__':
-    app.run(sim)
+    try:
+        app.run(sim)
+    except SystemExit:
+        pass
