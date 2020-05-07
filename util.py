@@ -115,3 +115,59 @@ def plot_sims(status_list,
         plt.savefig(filename, bbox_inches='tight', pad_inches=0.0)
     else:
         plt.show()
+
+
+def plot_history(history,
+                 susceptible=True,
+                 infected=True,
+                 removed=True,
+                 filename=None,
+                 save=True,
+                 title=None,
+                 ylimit=None,
+                 xlimit=None):
+
+    # plt.figure()
+    day_list, his_dic = history.get_history()
+
+    for city_name, his in his_dic.items():
+        SEC_array = np.asarray(his[0])
+        INF_array = np.asarray(his[1])
+        REM_array = np.asarray(his[2])
+        x_array = np.arange(INF_array.size)
+        if susceptible:
+            plt.plot(x_array, SEC_array, label='{}_S'.format(city_name))
+        if infected:
+            plt.plot(x_array, INF_array, label='{}_I'.format(city_name))
+        if removed:
+            plt.plot(x_array, REM_array, label='{}_R'.format(city_name))
+
+    plt.legend()
+
+    if title is not None:
+        plt.title(title)
+
+    if ylimit is not None:
+        plt.ylim(ylimit)
+
+    if xlimit is not None:
+        plt.xlim(xlimit)
+
+    plt.xlabel('Day')
+    plt.ylabel('Population')
+    if susceptible and not infected and not removed:
+        plt.ylabel('Susceptible Population')
+    if not susceptible and infected and not removed:
+        plt.ylabel('Infected Population')
+    if not susceptible and not infected and removed:
+        plt.ylabel('Removed Population')
+
+    if filename is None:
+        filename = datetime.now().strftime('%Y%m%d%H%M')
+
+    filename = '{}.png'.format(filename)
+
+    if save:
+        plt.savefig(filename, bbox_inches='tight', pad_inches=0.0)
+    else:
+        plt.show()

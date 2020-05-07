@@ -31,6 +31,20 @@ class History(object):
         record['status'] = status.get_record_for_history()
         self.h.append(record)
 
+    def get_history(self):
+        day_list = [h['day'].date for h in self.h]
+        status_array_dic = {}
+        for h in self.h:
+            for k, v in h['status'].items():
+                if k not in status_array_dic:
+                    status_array_dic[k] = {}
+                for i, j in v.items():
+                    if i not in status_array_dic[k]:
+                        status_array_dic[k][i] = []
+                    status_array_dic[k][i].append(j)
+
+        return day_list, status_array_dic
+
 
 class Status(object):
     def __init__(self, citys):
