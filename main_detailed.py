@@ -10,14 +10,16 @@ flags.DEFINE_string('f', '', 'kernel')
 # Simulation Parameters
 FLAGS = flags.FLAGS
 
-mode = False
+FLAGS.max_size_per_it = 1000000
+
+mode = True
 
 
 def sim(argv):
     if mode:
         calc(FLAGS)
     else:
-        names = './202005071656'
+        names = './202005071758'
         plots(names)
 
 
@@ -40,7 +42,7 @@ def plots(basename):
                       filename=None,
                       save=True,
                       title=None,
-                      ylimit=[0, 6000],
+                      ylimit=[0, 2000],
                       xlimit=[0, 160])
     # util.save_as_csv(status, basename)
 

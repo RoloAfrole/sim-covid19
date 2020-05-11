@@ -133,10 +133,10 @@ class Default_Izer(Initializer):
                 'p_remove':
                 0.1,
                 'peaple': [
-                    self.person_group(0, 'general1', 7000,
-                                      [0.996, 0.002, 0.002, 0.0]),
-                    self.person_group(1, 'general2', 7000,
-                                      [0.996, 0.002, 0.002, 0.0]),
+                    self.person_group(0, 'general1', 7000000,
+                                      [0.999996, 0.000002, 0.000002, 0.0]),
+                    self.person_group(1, 'general2', 7000000,
+                                      [0.999996, 0.000002, 0.000002, 0.0]),
                 ],
                 'areas': [
                     self.area_group(
@@ -200,14 +200,14 @@ class Default_Izer(Initializer):
                 'p_remove':
                 0.1,
                 'peaple': [
-                    self.person_group(0, 'general1', 7000,
-                                      [0.996, 0.002, 0.002, 0.0]),
-                    self.person_group(1, 'general2', 7000,
-                                      [0.996, 0.002, 0.002, 0.0]),
-                    # self.person_group(0, 'general1', 7000000,
-                    #                   [0.999996, 0.000002, 0.000002, 0.0]),
-                    # self.person_group(1, 'general2', 7000000,
-                    #                   [0.999996, 0.000002, 0.000002, 0.0]),
+                    # self.person_group(0, 'general1', 7000,
+                    #                   [0.996, 0.002, 0.002, 0.0]),
+                    # self.person_group(1, 'general2', 7000,
+                    #                   [0.996, 0.002, 0.002, 0.0]),
+                    self.person_group(0, 'general1', 7000000,
+                                      [0.999996, 0.000002, 0.000002, 0.0]),
+                    self.person_group(1, 'general2', 7000000,
+                                      [0.999996, 0.000002, 0.000002, 0.0]),
                 ],
                 'areas': [
                     self.area_group(
