@@ -10,7 +10,7 @@ flags.DEFINE_string('f', '', 'kernel')
 # Simulation Parameters
 FLAGS = flags.FLAGS
 
-FLAGS.max_size_per_it = 1000000
+FLAGS.max_size_per_it = 100000
 
 mode = True
 
@@ -24,10 +24,16 @@ def sim(argv):
 
 
 def calc(config=FLAGS):
+    # from dask.distributed import Client
+    # client = Client()
+    # client.cluster
     basename = datetime.now().strftime('%Y%m%d%H%M')
     initzr = Default_Izer(config)
     conductor = Conductor(config, initzr)
     conductor.sim()
+    
+    # client.shutdown()
+
     print(conductor.manager.history.h[-1]['status'])
     # util.plot_sim(results, basename)
     util.save_status(conductor.manager.history, basename)

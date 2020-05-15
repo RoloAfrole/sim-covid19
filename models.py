@@ -1,11 +1,14 @@
-import numpy as np
+import dask.array as da
+import dask
 import constant as ct
 from absl import flags
+import dask.multiprocessing
+dask.config.set(scheduler='processes')
 
 # Simulation Parameters
 FLAGS = flags.FLAGS
 
-flags.DEFINE_integer('max_size_per_it', 10000, 'max number of iter')
+flags.DEFINE_integer('max_size_per_it', 10000000, 'max number of iter')
 
 
 class Manager(object):
@@ -145,20 +148,20 @@ class Status(object):
     def calc_hour_chs_iter(self, city_name, person_ids, areas, s_idx, e_idx,
                            day):
         city = self.get_city(city_name)
-        patterns = city.get_person_patterns(person_ids[s_idx:e_idx], day)
+        patterns = city.get_person_patterns(person_ids[s_idx:e_idx].compute(), day)
         p_inf = self.p_inf(patterns[::, 3:], areas)
-        return self.vector_chs(p_inf, *p_inf.shape)
+        return self.vector_chs(p_inf, p_inf.shape)
 
     def calc_end(self, records):
         for k in records.keys():
             p_r = records[k]['p_remove']
             v_rem = self.vector_chs(p_r, records[k]['inner'].shape[0])
-            records[k]['inner_chs'] = np.hstack(
+            records[k]['inner_chs'] = da.hstack(
                 (records[k]['inner_chs'], v_rem.reshape(-1, 1)))
             for v in records.values():
                 if k in v['move_out']:
                     v_rem = self.vector_chs(p_r, v['move_out'][k].shape[0])
-                    v['move_out']['{}_chs'.format(k)] = np.hstack(
+                    v['move_out']['{}_chs'.format(k)] = da.hstack(
                         (v['move_out']['{}_chs'.format(k)],
                          v_rem.reshape(-1, 1)))
 
@@ -168,7 +171,7 @@ class Status(object):
         k = city_name
         p_r = records[k]['p_remove']
         v_rem = self.vector_chs(p_r, records[k]['inner'][s_idx:e_idx].shape[0])
-        records[k]['inner_chs'] = np.hstack(
+        records[k]['inner_chs'] = da.hstack(
             (records[k]['inner_chs'], v_rem.reshape(-1, 1)))
         return records
 
@@ -178,7 +181,7 @@ class Status(object):
         p_r = records[m_city_name]['p_remove']
         v_rem = self.vector_chs(
             p_r, records[k]['move_out'][m_city_name][s_idx:e_idx].shape[0])
-        records[k]['move_out']['{}_chs'.format(m_city_name)] = np.hstack(
+        records[k]['move_out']['{}_chs'.format(m_city_name)] = da.hstack(
             (records[k]['move_out']['{}_chs'.format(m_city_name)],
              v_rem.reshape(-1, 1)))
         return records
@@ -212,14 +215,15 @@ class Status(object):
         return records
 
     @staticmethod
-    def vector_chs(p, *l):
-        rand = np.random.rand(*l)
+    def vector_chs(p, l):
+        rand = da.random.random(l)
         v_chs = rand < p
+        v_chs = v_chs.rechunk('auto')
         return v_chs
 
     @staticmethod
     def p_inf(peaple_pattern, areas):
-        return np.sum(peaple_pattern * areas.T, axis=2)
+        return da.sum(peaple_pattern * areas.T, axis=2)
 
 
 class City(object):
@@ -237,8 +241,8 @@ class City(object):
         values['inner'] = inner[:, 0]
         values['inner_c'] = inner[:, 1]
 
-        values['areas'] = np.array(
-            [area.get_param(day) for area in self.areas])
+        values['areas'] = da.from_array(
+            [area.get_param(day) for area in self.areas], chunks=(-1, -1))
         values['p_remove'] = self.p_remove
         return values
 
@@ -259,25 +263,25 @@ class City(object):
         c_list = [record['inner_chs']]
         c_list.extend([mo['{}_chs'.format(k)] for k in city_names if k in mo])
 
-        stacked_record = np.vstack(r_list)
-        changes = np.vstack(c_list)
+        stacked_record = da.vstack(r_list)
+        changes = da.vstack(c_list)
         i_chs = self.get_infected_changes(changes)
         rem_chs = self.get_removed_changes(changes)
-        ids = stacked_record[::, 0]
+        ids = stacked_record[::, 0].compute()
         self.change_peaple(ids, i_chs, rem_chs)
 
     def refrect_changes_inner(self, record, s_idx, e_idx):
         changes = record['inner_chs']
         i_chs = self.get_infected_changes(changes)
         rem_chs = self.get_removed_changes(changes)
-        ids = record['inner'][s_idx:e_idx]
+        ids = record['inner'][s_idx:e_idx].compute()
         self.change_peaple(ids, i_chs, rem_chs)
 
     def refrect_changes_outer(self, record, city_name, s_idx, e_idx):
         changes = record['move_out']['{}_chs'.format(city_name)]
         i_chs = self.get_infected_changes(changes)
         rem_chs = self.get_removed_changes(changes)
-        ids = record['move_out'][city_name][s_idx:e_idx]
+        ids = record['move_out'][city_name][s_idx:e_idx].compute()
         self.change_peaple(ids, i_chs, rem_chs)
 
     def change_peaple(self, ids, i_chs, rem_chs):
@@ -300,20 +304,22 @@ class City(object):
         pattern_list = []
         for idx in ids:
             p = self.peaple[idx]
-            pattern_list.append(p.get_values(day))
-        return np.array(pattern_list)
+            pattern_list.append(dask.delayed(p.get_values)(day))
+        # return da.vstack(pattern_list)
+        al = dask.delayed(list)(pattern_list)
+        return da.vstack(al.compute())
 
     @staticmethod
     def get_infected_changes(changes):
         i_chs = changes[::, :-1]
-        all_true = np.ones(i_chs.shape[1], dtype='bool')
-        chs = np.dot(i_chs, all_true).reshape((-1, 1))
-        return chs
+        all_true = da.ones(i_chs.shape[1], dtype='bool', chunks=(-1))
+        chs = da.dot(i_chs, all_true).reshape((-1, 1))
+        return chs.compute()
 
     @staticmethod
     def get_removed_changes(changes):
         rem_chs = changes[::, -1:]
-        return rem_chs
+        return rem_chs.compute()
 
 
 class Person(object):
@@ -326,12 +332,11 @@ class Person(object):
     def get_values(self, day):
         from settings import Active_Pattern
         pattern = Active_Pattern.pattern(self.group, self.condition, day)
-        person = np.zeros([3, pattern.shape[1]])
-        person[0][0] = self.id
-        person[1][0] = self.group
-        person[2][0] = self.condition
-
-        return np.vstack([person, pattern])
+        person = da.from_array(
+            [[self.id] * pattern.shape[1], [self.group] * pattern.shape[1],
+             [self.condition] * pattern.shape[1]], chunks=(-1, -1))
+        values = da.vstack([person, pattern])
+        return values.reshape(1, values.shape[0], values.shape[1])
 
     def get_id(self):
         return self.id
@@ -345,7 +350,7 @@ class Person(object):
 
     @staticmethod
     def num_with_condition(values, target):
-        n = np.count_nonzero(values == target)
+        n = da.count_nonzero(values == target)
         return n
 
 
@@ -366,17 +371,22 @@ class MoveOut(object):
         self.pattern = pattern
 
     def move(self, targets, day):
-        # t_np = np.array([t.get_values(day) for t in targets])
-        t_np = np.array([[t.id, t.condition] for t in targets])
+        t_np = da.from_array([[t.id, t.condition] for t in targets], chunks=('auto', -1))
         num_mo = {}
         for k, v in self.get_pattern(day).items():
             m_num = t_np.shape[0] * v
             num_mo[k] = m_num
 
-        # new_t_np = np.random.choice(t_np, t_np.shape[0], replace=False)
-        new_t_np = t_np[np.random.
+        new_t_np = t_np[da.random.
                         choice(t_np.shape[0], t_np.shape[0], replace=False), :]
-        splited = np.split(new_t_np, [int(v) for v in num_mo.values()])
+        # splited = da.split(new_t_np, [int(v) for v in num_mo.values()])
+        splited = []
+        start_idx = 0
+        for v in num_mo.values():
+            i = start_idx + int(v)
+            splited.append(new_t_np[start_idx:i, :])
+            start_idx = i
+        splited.append(new_t_np[start_idx:-1, :])
 
         mo = {}
         for i, k in enumerate(num_mo.keys()):
