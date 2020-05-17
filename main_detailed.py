@@ -11,15 +11,17 @@ flags.DEFINE_string('f', '', 'kernel')
 FLAGS = flags.FLAGS
 
 FLAGS.max_size_per_it = 1000000
+FLAGS.pool_size = 16
 
 mode = True
+# mode = False
 
 
 def sim(argv):
     if mode:
         calc(FLAGS)
     else:
-        names = './202005071758'
+        names = '202005171711'
         plots(names)
 
 

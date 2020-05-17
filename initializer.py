@@ -9,26 +9,30 @@ import constant as ct
 import datetime
 import models
 
+from multiprocessing.managers import SharedMemoryManager
+
 
 class Initializer(object):
     def __init__(self, config):
         self.config = config
 
-    def create_status(self):
-        citys = self.create_citys()
-        status = models.Status(citys)
+    def create_status(self, smm):
+        citys = self.create_citys(smm)
+        status = models.Status(citys, smm)
         return status
 
     def create_srange(self):
         raise NotImplementedError
 
-    def create_citys(self):
+    def create_citys(self, smm):
         raise NotImplementedError
 
     def create_manager(self, histroy=None):
-        status = self.create_status()
+        smm = SharedMemoryManager()
+        smm.start()
+        status = self.create_status(smm)
         srange = self.create_srange()
-        return models.Manager(status, srange, history=histroy)
+        return models.Manager(status, srange, smm, history=histroy)
 
     def _create_days(self, start_date, condition_list):
         days = []
@@ -43,36 +47,38 @@ class Initializer(object):
 
         return days
 
-    def _create_citys(self, condition):
+    def _create_citys(self, condition, smm):
         citys = []
         for c in condition:
             citys.append(models.City(
                 name=c['name'],
-                peaple=self._create_peaple(c['peaple']),
+                peaple=self._create_peaple(c['peaple'], smm),
                 areas=self._create_areas(c['areas']),
                 move_out=self._create_move_out(c['move_out']),
-                p_remove=c['p_remove']))
+                p_remove=c['p_remove'],
+                smm=smm))
         return citys
 
-    def _create_peaple(self, condition):
+    def _create_peaple(self, condition, smm):
         peaple = []
         ids = 0
+
         for c in condition:
             pop = c['population']
             total_pop = [int(r*pop) for r in c['condition_prop']]
             for condition_idx, tp in enumerate(total_pop):
                 for i in range(tp):
-                    peaple.append(
-                        models.Person(
-                            id=ids,
-                            group=c['id'],
-                            condition=condition_idx,
-                            group_name=c['name']
-                        )
-                    )
+                    peaple.append([ids, c['id'], condition_idx, -1])
                     ids += 1
 
-        return peaple
+        na = np.array(peaple, dtype=int)
+        del peaple
+        shm = smm.SharedMemory(size=na.nbytes)
+        shm_array = np.ndarray(na.shape, dtype=na.dtype, buffer=shm.buf)
+        shm_array[:] = na[:]
+        del na
+
+        return shm_array, shm.name, shm
 
     def _create_areas(self, condition):
         areas = []
@@ -125,7 +131,7 @@ class Default_Izer(Initializer):
                                  end_position=len(days))
         return srange
 
-    def create_citys(self):
+    def create_citys(self, smm):
         condition = [
             {
                 'name':
@@ -267,4 +273,4 @@ class Default_Izer(Initializer):
             }
         ]
 
-        return self._create_citys(condition)
+        return self._create_citys(condition, smm)
