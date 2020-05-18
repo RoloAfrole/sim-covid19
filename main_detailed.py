@@ -1,5 +1,5 @@
 from conductor import Conductor
-from initializer import Default_Izer
+from initializer import Default_Izer, Detailed_Izer, Detailed_TL_Izer, Detailed_TL_GO_Izer
 from datetime import datetime
 from absl import app
 from absl import flags
@@ -19,15 +19,22 @@ mode = True
 
 def sim(argv):
     if mode:
-        calc(FLAGS)
+        # calc(Detailed_Izer, FLAGS,
+        #      'det_' + datetime.now().strftime('%Y%m%d%H%M'))
+        # calc(Detailed_TL_Izer, FLAGS,
+        #      'det_TL_' + datetime.now().strftime('%Y%m%d%H%M'))
+        calc(Detailed_TL_GO_Izer, FLAGS,
+             'det_TL_GO_' + datetime.now().strftime('%Y%m%d%H%M'))
     else:
         names = '202005171711'
         plots(names)
 
 
-def calc(config=FLAGS):
-    basename = datetime.now().strftime('%Y%m%d%H%M')
-    initzr = Default_Izer(config)
+def calc(izer, config=FLAGS, name=None):
+    basename = name
+    if name is None:
+        basename = datetime.now().strftime('%Y%m%d%H%M')
+    initzr = izer(config)
     conductor = Conductor(config, initzr)
     conductor.sim()
     print(conductor.manager.history.h[-1]['status'])
