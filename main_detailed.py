@@ -11,7 +11,7 @@ flags.DEFINE_string('f', '', 'kernel')
 FLAGS = flags.FLAGS
 
 FLAGS.max_size_per_it = 1000000
-FLAGS.pool_size = 16
+FLAGS.pool_size = 32
 
 mode = True
 # mode = False
@@ -19,14 +19,14 @@ mode = True
 
 def sim(argv):
     if mode:
-        # calc(Detailed_Izer, FLAGS,
-        #      'det_' + datetime.now().strftime('%Y%m%d%H%M'))
-        # calc(Detailed_TL_Izer, FLAGS,
-        #      'det_TL_' + datetime.now().strftime('%Y%m%d%H%M'))
+        calc(Detailed_Izer, FLAGS,
+             'det_' + datetime.now().strftime('%Y%m%d%H%M'))
+        calc(Detailed_TL_Izer, FLAGS,
+             'det_TL_' + datetime.now().strftime('%Y%m%d%H%M'))
         calc(Detailed_TL_GO_Izer, FLAGS,
              'det_TL_GO_' + datetime.now().strftime('%Y%m%d%H%M'))
     else:
-        names = '202005171711'
+        names = '202005191634'
         plots(names)
 
 
