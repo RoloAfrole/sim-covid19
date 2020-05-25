@@ -23,11 +23,7 @@ Day_Groups = {
     'after_SoE': Group_Day(7, 'after_SoE'),
 }
 
-
-class Active_Pattern(object):
-    @staticmethod
-    def pattern(group, condition, day_group_name, isholiday):
-        pttn = [
+A_PATTERN = [
             # general1
             [{
                 'before_SoE':
@@ -1289,5 +1285,10 @@ class Active_Pattern(object):
                  [[1, 0, 0]] * 8 + [[0, 1, 0]] * 10 + [[0, 0, 1]] * 6],
             }],
         ]
+
+
+class Active_Pattern(object):
+    @staticmethod
+    def pattern(group, condition, day_group_name, isholiday):
         return np.array(
-            pttn[group][condition][day_group_name][1 if isholiday else 0])
+            A_PATTERN[group][condition][day_group_name][1 if isholiday else 0])
