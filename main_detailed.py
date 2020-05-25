@@ -1,5 +1,6 @@
 from conductor import Conductor
-from initializer import Default_Izer, Detailed_Izer, Detailed_TL_Izer, Detailed_TL_GO_Izer
+from initializer import Detailed_Izer, Detailed_TL_Izer, Detailed_TL_GO_Izer
+from initializer import Detailed_I10_Izer, Detailed_I10_TL_Izer, Detailed_I10_TL_GO_Izer
 from datetime import datetime
 from absl import app
 from absl import flags
@@ -19,12 +20,18 @@ mode = True
 
 def sim(argv):
     if mode:
-        calc(Detailed_Izer, FLAGS,
-             'det_' + datetime.now().strftime('%Y%m%d%H%M'))
-        calc(Detailed_TL_Izer, FLAGS,
-             'det_TL_' + datetime.now().strftime('%Y%m%d%H%M'))
-        calc(Detailed_TL_GO_Izer, FLAGS,
-             'det_TL_GO_' + datetime.now().strftime('%Y%m%d%H%M'))
+        # calc(Detailed_Izer, FLAGS,
+        #      'det_' + datetime.now().strftime('%Y%m%d%H%M'))
+        # calc(Detailed_TL_Izer, FLAGS,
+        #      'det_TL_' + datetime.now().strftime('%Y%m%d%H%M'))
+        # calc(Detailed_TL_GO_Izer, FLAGS,
+        #      'det_TL_GO_' + datetime.now().strftime('%Y%m%d%H%M'))
+        calc(Detailed_I10_Izer, FLAGS,
+             'det_I10_' + datetime.now().strftime('%Y%m%d%H%M'))
+        calc(Detailed_I10_TL_Izer, FLAGS,
+             'det_I10_TL_' + datetime.now().strftime('%Y%m%d%H%M'))
+        calc(Detailed_I10_TL_GO_Izer, FLAGS,
+             'det_I10_TL_GO_' + datetime.now().strftime('%Y%m%d%H%M'))
     else:
         names = '202005191634'
         plots(names)
