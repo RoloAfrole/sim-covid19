@@ -1,6 +1,8 @@
 from conductor import Conductor
 from initializer import Detailed_Izer, Detailed_TL_Izer, Detailed_TL_GO_Izer
 from initializer import Detailed_I10_Izer, Detailed_I10_TL_Izer, Detailed_I10_TL_GO_Izer
+from initializer import Izer_kanto
+
 from datetime import datetime
 from absl import app
 from absl import flags
@@ -12,7 +14,7 @@ flags.DEFINE_string('f', '', 'kernel')
 FLAGS = flags.FLAGS
 
 FLAGS.max_size_per_it = 1000000
-FLAGS.pool_size = 32
+FLAGS.pool_size = 16
 
 mode = True
 # mode = False
@@ -26,14 +28,16 @@ def sim(argv):
         #      'det_TL_' + datetime.now().strftime('%Y%m%d%H%M'))
         # calc(Detailed_TL_GO_Izer, FLAGS,
         #      'det_TL_GO_' + datetime.now().strftime('%Y%m%d%H%M'))
-        calc(Detailed_I10_Izer, FLAGS,
-             'det_I10_' + datetime.now().strftime('%Y%m%d%H%M'))
-        calc(Detailed_I10_TL_Izer, FLAGS,
-             'det_I10_TL_' + datetime.now().strftime('%Y%m%d%H%M'))
-        calc(Detailed_I10_TL_GO_Izer, FLAGS,
-             'det_I10_TL_GO_' + datetime.now().strftime('%Y%m%d%H%M'))
+        # calc(Detailed_I10_Izer, FLAGS,
+        #      'det_I10_' + datetime.now().strftime('%Y%m%d%H%M'))
+        # calc(Detailed_I10_TL_Izer, FLAGS,
+        #      'det_I10_TL_' + datetime.now().strftime('%Y%m%d%H%M'))
+        # calc(Detailed_I10_TL_GO_Izer, FLAGS,
+        #      'det_I10_TL_GO_' + datetime.now().strftime('%Y%m%d%H%M'))
+        calc(Izer_kanto, FLAGS,
+             'kanto' + datetime.now().strftime('%Y%m%d%H%M'))
     else:
-        names = '202005191634'
+        names = 'det_I10_TL_202005252127'
         plots(names)
 
 
@@ -56,10 +60,11 @@ def plots(basename):
                       infected=True,
                       removed=True,
                       filename=None,
-                      save=True,
+                      save=False,
                       title=None,
-                      ylimit=[0, 2000],
-                      xlimit=[0, 160])
+                    #   ylimit=[0, 2000],
+                    #   xlimit=[0, 160]
+                      )
     # util.save_as_csv(status, basename)
 
 
