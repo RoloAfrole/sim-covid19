@@ -117,12 +117,12 @@ class Default_Izer(Initializer):
         start_date = datetime.date(2020, 3, 1)
         condition_list = [
             [datetime.date(2020, 4, 7), Day_Groups['before_SoE']],
-            # [datetime.date(2020, 4, 14), Day_Groups['1week_SoE']],
-            # [datetime.date(2020, 4, 21), Day_Groups['2week_SoE']],
-            # [datetime.date(2020, 4, 28), Day_Groups['3week_SoE']],
-            # [datetime.date(2020, 5, 5), Day_Groups['4week_SoE']],
-            # [datetime.date(2020, 5, 25), Day_Groups['5__week_SoE']],
-            # [datetime.date(2020, 7, 31), Day_Groups['after_SoE']],
+            [datetime.date(2020, 4, 14), Day_Groups['1week_SoE']],
+            [datetime.date(2020, 4, 21), Day_Groups['2week_SoE']],
+            [datetime.date(2020, 4, 28), Day_Groups['3week_SoE']],
+            [datetime.date(2020, 5, 5), Day_Groups['4week_SoE']],
+            [datetime.date(2020, 5, 25), Day_Groups['5__week_SoE']],
+            [datetime.date(2020, 7, 31), Day_Groups['after_SoE']],
         ]
 
         days = self._create_days(start_date, condition_list)
