@@ -2924,8 +2924,16 @@ class Izer_TL_GO_kanto(Default_Izer):
             {
                 'name':
                 'Tokyo',
-                'p_remove':
-                0.1,
+                'p_remove': {
+                    'before_SoE': 0.1,
+                    'before_2_SoE': 0.15,
+                    '1week_SoE': 0.15,
+                    '2week_SoE': 0.15,
+                    '3week_SoE': 0.15,
+                    '4week_SoE': 0.15,
+                    '5__week_SoE': 0.15,
+                    'after_SoE': 0.15,
+                },
                 'peaple': [
                     # 2
                     self.person_group(2, '00to19_1', 1, [1889987, 12, 1, 0.0]),
@@ -3057,8 +3065,16 @@ class Izer_TL_GO_kanto(Default_Izer):
             {
                 'name':
                 'Chiba',
-                'p_remove':
-                0.1,
+                'p_remove': {
+                    'before_SoE': 0.1,
+                    'before_2_SoE': 0.15,
+                    '1week_SoE': 0.15,
+                    '2week_SoE': 0.15,
+                    '3week_SoE': 0.15,
+                    '4week_SoE': 0.15,
+                    '5__week_SoE': 0.15,
+                    'after_SoE': 0.15,
+                },
                 'peaple': [
                     self.person_group(2, '00to19_1', 1, [989994, 5, 1, 0.0]),
                     self.person_group(3, '20to44_1', 1, [569942, 51, 6, 0.0]),
@@ -3186,8 +3202,16 @@ class Izer_TL_GO_kanto(Default_Izer):
             {
                 'name':
                 'Kanagawa',
-                'p_remove':
-                0.1,
+                'p_remove': {
+                    'before_SoE': 0.1,
+                    'before_2_SoE': 0.15,
+                    '1week_SoE': 0.15,
+                    '2week_SoE': 0.15,
+                    '3week_SoE': 0.15,
+                    '4week_SoE': 0.15,
+                    '5__week_SoE': 0.15,
+                    'after_SoE': 0.15,
+                },
                 'peaple': [
                     self.person_group(2, '00to19_1', 1, [1349991, 8, 1, 0.0]),
                     self.person_group(3, '20to44_1', 1, [839910, 80, 11, 0.0]),
@@ -3315,8 +3339,16 @@ class Izer_TL_GO_kanto(Default_Izer):
             {
                 'name':
                 'Saitama',
-                'p_remove':
-                0.1,
+                'p_remove': {
+                    'before_SoE': 0.1,
+                    'before_2_SoE': 0.15,
+                    '1week_SoE': 0.15,
+                    '2week_SoE': 0.15,
+                    '3week_SoE': 0.15,
+                    '4week_SoE': 0.15,
+                    '5__week_SoE': 0.15,
+                    'after_SoE': 0.15,
+                },
                 'peaple': [
                     self.person_group(2, '00to19_1', 1, [1079999, 1, 0, 0.0]),
                     self.person_group(3, '20to44_1', 1, [659986, 13, 2, 0.0]),
@@ -3444,8 +3476,16 @@ class Izer_TL_GO_kanto(Default_Izer):
             {
                 'name':
                 'Gunma',
-                'p_remove':
-                0.1,
+                'p_remove': {
+                    'before_SoE': 0.1,
+                    'before_2_SoE': 0.15,
+                    '1week_SoE': 0.15,
+                    '2week_SoE': 0.15,
+                    '3week_SoE': 0.15,
+                    '4week_SoE': 0.15,
+                    '5__week_SoE': 0.15,
+                    'after_SoE': 0.15,
+                },
                 'peaple': [
                     self.person_group(2, '00to19_1', 1, [270000, 0, 0, 0.0]),
                     self.person_group(3, '20to44_1', 1, [150000, 0, 0, 0.0]),
@@ -3573,8 +3613,16 @@ class Izer_TL_GO_kanto(Default_Izer):
             {
                 'name':
                 'Tochigi',
-                'p_remove':
-                0.1,
+                'p_remove': {
+                    'before_SoE': 0.1,
+                    'before_2_SoE': 0.15,
+                    '1week_SoE': 0.15,
+                    '2week_SoE': 0.15,
+                    '3week_SoE': 0.15,
+                    '4week_SoE': 0.15,
+                    '5__week_SoE': 0.15,
+                    'after_SoE': 0.15,
+                },
                 'peaple': [
                     self.person_group(2, '00to19_1', 1, [270000, 0, 0, 0.0]),
                     self.person_group(3, '20to44_1', 1, [149996, 3, 1, 0.0]),
@@ -3702,8 +3750,16 @@ class Izer_TL_GO_kanto(Default_Izer):
             {
                 'name':
                 'Ibaraki',
-                'p_remove':
-                0.1,
+                'p_remove': {
+                    'before_SoE': 0.1,
+                    'before_2_SoE': 0.15,
+                    '1week_SoE': 0.15,
+                    '2week_SoE': 0.15,
+                    '3week_SoE': 0.15,
+                    '4week_SoE': 0.15,
+                    '5__week_SoE': 0.15,
+                    'after_SoE': 0.15,
+                },
                 'peaple': [
                     self.person_group(2, '00to19_1', 1, [450000, 0, 0, 0.0]),
                     self.person_group(3, '20to44_1', 1, [240000, 0, 0, 0.0]),

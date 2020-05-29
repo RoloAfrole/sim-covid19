@@ -162,7 +162,7 @@ class City(object):
         values['moved_idx'] = self.create_moved_index(moved_target, move_ids)
         values['areas'] = create_numpy_shm(
             np.array([area.get_param(day) for area in self.areas]), self.smm)
-        values['p_remove'] = self.p_remove
+        values['p_remove'] = self.get_p_remove(day)
         return values
 
     def create_moved_index(self, moved_target, move_ids):
@@ -180,6 +180,14 @@ class City(object):
         targets = self.get_targets()
         moved_target, move_ids = self.move_out.move(targets, day, self.smm)
         return moved_target, move_ids
+
+    def get_p_remove(self, day):
+        day_group_name = day.group.name
+        isholiday = day.holiday
+        if type(self.p_remove) is float:
+            return self.p_remove
+        elif type(self.p_remove) is dict:
+            return self.p_remove[day_group_name][1 if isholiday else 0]
 
     def get_targets(self):
         # targets = [p for p in self.peaple if p.condition != ct.const.REM]
