@@ -15,7 +15,7 @@ flags.DEFINE_string('f', '', 'kernel')
 FLAGS = flags.FLAGS
 
 FLAGS.max_size_per_it = 1000000
-FLAGS.pool_size = 14
+FLAGS.pool_size = 16
 
 FLAGS.dist_day = '2020/05/24'
 FLAGS.dist_file = 'base_4-7_5-24_w4576'
@@ -53,7 +53,11 @@ def sim(argv):
         calc(Izer_TL_GO_LI_kanto_with_dist, FLAGS,
              'kanto_after_SOE_start_5-24_w4576_C2_' + datetime.now().strftime('%Y%m%d%H%M'))
     else:
-        names = 'kanto_after_SOE_start_5-24_w4576_C1_202006051141'
+        names = [
+            'base_3-1_4-6_w1167',
+            'base_4-7_5-24_w4576',
+            'kanto_after_SOE_start_5-24_w4576_C1_202006051141',
+        ]
         plots(names)
 
 
@@ -69,18 +73,22 @@ def calc(izer, config=FLAGS, name=None):
     util.save_status(conductor.manager.history, basename)
 
 
-def plots(basename):
-    history = util.load_status(basename)
-    util.plot_history(history,
-                      susceptible=False,
-                      infected=True,
-                      removed=True,
-                      filename=None,
-                      save=False,
-                      title=None,
-                      ylimit=[0, 6000],
-                      xlimit=[0, 50]
-                      )
+def plots(basenames):
+    historys = []
+    for name in basenames:
+        historys.append(util.load_status(name))
+
+    util.show_history_list(historys,
+                           susceptible=False,
+                           infected=True,
+                           removed=True,
+                           use_def=False,
+                           filename=None,
+                           save=False,
+                           title=None,
+                           ylimit=[0, 10000],
+                           xlimit=[0, 150]
+                           )
     # util.save_as_csv(status, basename)
 
 
