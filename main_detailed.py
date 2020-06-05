@@ -1,7 +1,8 @@
 from conductor import Conductor
 from initializer import Detailed_Izer, Detailed_TL_Izer, Detailed_TL_GO_Izer
 from initializer import Detailed_I10_Izer, Detailed_I10_TL_Izer, Detailed_I10_TL_GO_Izer
-from initializer import Izer_kanto, Izer_TL_kanto, Izer_TL_GO_kanto
+from initializer import Izer_kanto, Izer_TL_kanto, Izer_TL_GO_kanto, Izer_TL_GO_LI_kanto
+from initializer import Izer_TL_GO_LI_kanto_with_dist
 
 from datetime import datetime
 from absl import app
@@ -14,7 +15,12 @@ flags.DEFINE_string('f', '', 'kernel')
 FLAGS = flags.FLAGS
 
 FLAGS.max_size_per_it = 1000000
-FLAGS.pool_size = 16
+FLAGS.pool_size = 14
+
+FLAGS.dist_day = '2020/05/24'
+FLAGS.dist_file = 'base_4-7_5-24_w4576'
+# FLAGS.dist_day = '2020/04/06'
+# FLAGS.dist_file = 'base_3-1_4-6_w1167'
 
 mode = True
 # mode = False
@@ -38,10 +44,16 @@ def sim(argv):
         #      'kanto_' + datetime.now().strftime('%Y%m%d%H%M'))
         # calc(Izer_TL_kanto, FLAGS,
         #      'kanto_TL_' + datetime.now().strftime('%Y%m%d%H%M'))
-        calc(Izer_TL_GO_kanto, FLAGS,
-             'kanto_TL_GO_' + datetime.now().strftime('%Y%m%d%H%M'))
+        # calc(Izer_TL_GO_kanto, FLAGS,
+        #      'kanto_TL_GO_' + datetime.now().strftime('%Y%m%d%H%M'))
+        # calc(Izer_TL_GO_LI_kanto, FLAGS,
+        #      'kanto_TL_GO_LI_for1200_' + datetime.now().strftime('%Y%m%d%H%M'))
+        # calc(Izer_TL_GO_LI_kanto_with_dist, FLAGS,
+        #      'kanto_after_' + datetime.now().strftime('%Y%m%d%H%M'))
+        calc(Izer_TL_GO_LI_kanto_with_dist, FLAGS,
+             'kanto_after_SOE_start_5-24_w4576_C2_' + datetime.now().strftime('%Y%m%d%H%M'))
     else:
-        names = 'kanto_TL_GO_202005281829'
+        names = 'kanto_after_SOE_start_5-24_w4576_C1_202006051141'
         plots(names)
 
 
@@ -66,8 +78,8 @@ def plots(basename):
                       filename=None,
                       save=False,
                       title=None,
-                      ylimit=[0, 2000],
-                      xlimit=[0, 35]
+                      ylimit=[0, 6000],
+                      xlimit=[0, 50]
                       )
     # util.save_as_csv(status, basename)
 

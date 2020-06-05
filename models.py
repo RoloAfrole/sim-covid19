@@ -44,6 +44,7 @@ class History(object):
         record = {}
         record['day'] = day
         record['status'] = status.get_record_for_history()
+        record['dist'] = status.get_record_for_dist()
         self.h.append(record)
 
     def get_history(self):
@@ -145,6 +146,13 @@ class Status(object):
 
         return records
 
+    def get_record_for_dist(self):
+        records = {}
+        for c in self.citys:
+            records[c.name] = c.get_dist()
+
+        return records
+
 
 class City(object):
     def __init__(self, name, peaple, areas, move_out, p_remove, smm):
@@ -199,6 +207,20 @@ class City(object):
         record = {}
         for k in key_list:
             record[k] = np.count_nonzero(self.peaple[0][:, 2] == k)
+        return record
+
+    def get_dist(self):
+        from settings import Peaple_Groups
+        key_list = [0, 1, 2]
+        record = {}
+
+        for pg, pg_i in Peaple_Groups.items():
+            indexs = np.where(self.peaple[0][:, 1] == pg_i)
+            if indexs[0].shape[0] != 0:
+                record[pg] = {}
+                for k in key_list:
+                    record[pg][k] = np.count_nonzero(
+                        self.peaple[0][indexs][:, 2] == k)
         return record
 
 

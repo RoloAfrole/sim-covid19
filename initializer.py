@@ -11,6 +11,11 @@ import models
 
 from multiprocessing.managers import SharedMemoryManager
 
+FLAGS = flags.FLAGS
+
+flags.DEFINE_string('dist_day', '2020/4/7', 'start_day')
+flags.DEFINE_string('dist_file', '', 'load file name')
+
 
 class Initializer(object):
     def __init__(self, config):
@@ -114,15 +119,37 @@ class Default_Izer(Initializer):
 
     def create_srange(self):
         from settings import Day_Groups
-        start_date = datetime.date(2020, 3, 1)
+        # start_date = datetime.date(2020, 3, 1)
+        # condition_list = [
+        #     [datetime.date(2020, 3, 20), Day_Groups['before_SoE']],
+        #     [datetime.date(2020, 4, 7), Day_Groups['before_2_SoE']],
+        #     # [datetime.date(2020, 4, 14), Day_Groups['1week_SoE']],
+        #     # [datetime.date(2020, 4, 21), Day_Groups['2week_SoE']],
+        #     # [datetime.date(2020, 4, 28), Day_Groups['3week_SoE']],
+        #     # [datetime.date(2020, 5, 5), Day_Groups['4week_SoE']],
+        #     # [datetime.date(2020, 5, 25), Day_Groups['5__week_SoE']],
+        #     # [datetime.date(2020, 7, 31), Day_Groups['after_SoE']],
+        # ]
+        # start_date = datetime.date(2020, 4, 7)
+        # condition_list = [
+        #     # [datetime.date(2020, 3, 20), Day_Groups['before_SoE']],
+        #     # [datetime.date(2020, 4, 7), Day_Groups['before_2_SoE']],
+        #     [datetime.date(2020, 4, 14), Day_Groups['1week_SoE']],
+        #     [datetime.date(2020, 4, 21), Day_Groups['2week_SoE']],
+        #     [datetime.date(2020, 4, 28), Day_Groups['3week_SoE']],
+        #     [datetime.date(2020, 5, 5), Day_Groups['4week_SoE']],
+        #     [datetime.date(2020, 5, 25), Day_Groups['5__week_SoE']],
+        #     # [datetime.date(2020, 7, 31), Day_Groups['after_SoE']],
+        # ]
+        start_date = datetime.date(2020, 5, 25)
         condition_list = [
-            [datetime.date(2020, 3, 20), Day_Groups['before_SoE']],
-            [datetime.date(2020, 4, 7), Day_Groups['before_2_SoE']],
-            [datetime.date(2020, 4, 14), Day_Groups['1week_SoE']],
-            [datetime.date(2020, 4, 21), Day_Groups['2week_SoE']],
-            [datetime.date(2020, 4, 28), Day_Groups['3week_SoE']],
-            [datetime.date(2020, 5, 5), Day_Groups['4week_SoE']],
-            [datetime.date(2020, 5, 25), Day_Groups['5__week_SoE']],
+            # [datetime.date(2020, 3, 20), Day_Groups['before_SoE']],
+            # [datetime.date(2020, 4, 7), Day_Groups['before_2_SoE']],
+            # [datetime.date(2020, 4, 14), Day_Groups['1week_SoE']],
+            # [datetime.date(2020, 4, 21), Day_Groups['2week_SoE']],
+            # [datetime.date(2020, 4, 28), Day_Groups['3week_SoE']],
+            # [datetime.date(2020, 5, 5), Day_Groups['4week_SoE']],
+            # [datetime.date(2020, 5, 25), Day_Groups['5__week_SoE']],
             [datetime.date(2020, 7, 31), Day_Groups['after_SoE']],
         ]
 
@@ -2926,13 +2953,13 @@ class Izer_TL_GO_kanto(Default_Izer):
                 'Tokyo',
                 'p_remove': {
                     'before_SoE': [0.1, 0.01],
-                    'before_2_SoE': [0.15, 0.015],
-                    '1week_SoE': [0.15, 0.015],
-                    '2week_SoE': [0.15, 0.015],
-                    '3week_SoE': [0.15, 0.015],
-                    '4week_SoE': [0.15, 0.015],
-                    '5__week_SoE': [0.15, 0.015],
-                    'after_SoE': [0.15, 0.015],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.1, 0.01],
+                    '3week_SoE': [0.1, 0.01],
+                    '4week_SoE': [0.1, 0.01],
+                    '5__week_SoE': [0.1, 0.01],
+                    'after_SoE': [0.1, 0.01],
                 },
                 'peaple': [
                     # 2
@@ -3067,13 +3094,13 @@ class Izer_TL_GO_kanto(Default_Izer):
                 'Chiba',
                 'p_remove': {
                     'before_SoE': [0.1, 0.01],
-                    'before_2_SoE': [0.15, 0.015],
-                    '1week_SoE': [0.15, 0.015],
-                    '2week_SoE': [0.15, 0.015],
-                    '3week_SoE': [0.15, 0.015],
-                    '4week_SoE': [0.15, 0.015],
-                    '5__week_SoE': [0.15, 0.015],
-                    'after_SoE': [0.15, 0.015],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.1, 0.01],
+                    '3week_SoE': [0.1, 0.01],
+                    '4week_SoE': [0.1, 0.01],
+                    '5__week_SoE': [0.1, 0.01],
+                    'after_SoE': [0.1, 0.01],
                 },
                 'peaple': [
                     self.person_group(2, '00to19_1', 1, [989994, 5, 1, 0.0]),
@@ -3204,13 +3231,13 @@ class Izer_TL_GO_kanto(Default_Izer):
                 'Kanagawa',
                 'p_remove': {
                     'before_SoE': [0.1, 0.01],
-                    'before_2_SoE': [0.15, 0.015],
-                    '1week_SoE': [0.15, 0.015],
-                    '2week_SoE': [0.15, 0.015],
-                    '3week_SoE': [0.15, 0.015],
-                    '4week_SoE': [0.15, 0.015],
-                    '5__week_SoE': [0.15, 0.015],
-                    'after_SoE': [0.15, 0.015],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.1, 0.01],
+                    '3week_SoE': [0.1, 0.01],
+                    '4week_SoE': [0.1, 0.01],
+                    '5__week_SoE': [0.1, 0.01],
+                    'after_SoE': [0.1, 0.01],
                 },
                 'peaple': [
                     self.person_group(2, '00to19_1', 1, [1349991, 8, 1, 0.0]),
@@ -3341,13 +3368,13 @@ class Izer_TL_GO_kanto(Default_Izer):
                 'Saitama',
                 'p_remove': {
                     'before_SoE': [0.1, 0.01],
-                    'before_2_SoE': [0.15, 0.015],
-                    '1week_SoE': [0.15, 0.015],
-                    '2week_SoE': [0.15, 0.015],
-                    '3week_SoE': [0.15, 0.015],
-                    '4week_SoE': [0.15, 0.015],
-                    '5__week_SoE': [0.15, 0.015],
-                    'after_SoE': [0.15, 0.015],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.1, 0.01],
+                    '3week_SoE': [0.1, 0.01],
+                    '4week_SoE': [0.1, 0.01],
+                    '5__week_SoE': [0.1, 0.01],
+                    'after_SoE': [0.1, 0.01],
                 },
                 'peaple': [
                     self.person_group(2, '00to19_1', 1, [1079999, 1, 0, 0.0]),
@@ -3478,13 +3505,13 @@ class Izer_TL_GO_kanto(Default_Izer):
                 'Gunma',
                 'p_remove': {
                     'before_SoE': [0.1, 0.01],
-                    'before_2_SoE': [0.15, 0.015],
-                    '1week_SoE': [0.15, 0.015],
-                    '2week_SoE': [0.15, 0.015],
-                    '3week_SoE': [0.15, 0.015],
-                    '4week_SoE': [0.15, 0.015],
-                    '5__week_SoE': [0.15, 0.015],
-                    'after_SoE': [0.15, 0.015],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.1, 0.01],
+                    '3week_SoE': [0.1, 0.01],
+                    '4week_SoE': [0.1, 0.01],
+                    '5__week_SoE': [0.1, 0.01],
+                    'after_SoE': [0.1, 0.01],
                 },
                 'peaple': [
                     self.person_group(2, '00to19_1', 1, [270000, 0, 0, 0.0]),
@@ -3615,13 +3642,13 @@ class Izer_TL_GO_kanto(Default_Izer):
                 'Tochigi',
                 'p_remove': {
                     'before_SoE': [0.1, 0.01],
-                    'before_2_SoE': [0.15, 0.015],
-                    '1week_SoE': [0.15, 0.015],
-                    '2week_SoE': [0.15, 0.015],
-                    '3week_SoE': [0.15, 0.015],
-                    '4week_SoE': [0.15, 0.015],
-                    '5__week_SoE': [0.15, 0.015],
-                    'after_SoE': [0.15, 0.015],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.1, 0.01],
+                    '3week_SoE': [0.1, 0.01],
+                    '4week_SoE': [0.1, 0.01],
+                    '5__week_SoE': [0.1, 0.01],
+                    'after_SoE': [0.1, 0.01],
                 },
                 'peaple': [
                     self.person_group(2, '00to19_1', 1, [270000, 0, 0, 0.0]),
@@ -3752,13 +3779,13 @@ class Izer_TL_GO_kanto(Default_Izer):
                 'Ibaraki',
                 'p_remove': {
                     'before_SoE': [0.1, 0.01],
-                    'before_2_SoE': [0.15, 0.015],
-                    '1week_SoE': [0.15, 0.015],
-                    '2week_SoE': [0.15, 0.015],
-                    '3week_SoE': [0.15, 0.015],
-                    '4week_SoE': [0.15, 0.015],
-                    '5__week_SoE': [0.15, 0.015],
-                    'after_SoE': [0.15, 0.015],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.1, 0.01],
+                    '3week_SoE': [0.1, 0.01],
+                    '4week_SoE': [0.1, 0.01],
+                    '5__week_SoE': [0.1, 0.01],
+                    'after_SoE': [0.1, 0.01],
                 },
                 'peaple': [
                     self.person_group(2, '00to19_1', 1, [450000, 0, 0, 0.0]),
@@ -3887,3 +3914,2951 @@ class Izer_TL_GO_kanto(Default_Izer):
         ]
 
         return self._create_citys(condition, smm)
+
+
+class Izer_TL_GO_LI_kanto(Default_Izer):
+    def __init__(self, config):
+        super(Izer_TL_GO_LI_kanto, self).__init__(config)
+
+    def create_citys(self, smm):
+        condition = [
+            {
+                'name':
+                'Tokyo',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.12, 0.012],
+                    '5__week_SoE': [0.12, 0.012],
+                    'after_SoE': [0.12, 0.012],
+                },
+                'peaple': [
+                    # 2
+                    self.person_group(2, '00to19_1', 1, [1889995, 4, 1, 0.0]),
+                    self.person_group(3, '20to44_1', 1,
+                                      [1439948, 37, 15, 0.0]),
+                    self.person_group(4, '45to64_1', 1,
+                                      [1019961, 28, 11, 0.0]),
+                    self.person_group(5, '65to99_1', 1,
+                                      [2699966, 24, 10, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [1200000, 0, 0, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [1680000, 0, 0, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [850000, 0, 0, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [1190000, 0, 0, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [210000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [480000, 0, 0, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [340000, 0, 0, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [300000, 0, 0, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Chiba': 0.016,
+                        'Kanagawa': 0.016,
+                        'Saitama': 0.016,
+                        'Gunma': 0.016,
+                        'Tochigi': 0.016,
+                        'Ibaraki': 0.016,
+                    },
+                    'before_2_SoE': {
+                        'Chiba': 0.018,
+                        'Kanagawa': 0.018,
+                        'Saitama': 0.018,
+                        'Gunma': 0.018,
+                        'Tochigi': 0.018,
+                        'Ibaraki': 0.018,
+                    },
+                    '1week_SoE': {
+                        'Chiba': 0.013,
+                        'Kanagawa': 0.013,
+                        'Saitama': 0.013,
+                        'Gunma': 0.013,
+                        'Tochigi': 0.013,
+                        'Ibaraki': 0.013,
+                    },
+                    '2week_SoE': {
+                        'Chiba': 0.01,
+                        'Kanagawa': 0.01,
+                        'Saitama': 0.01,
+                        'Gunma': 0.01,
+                        'Tochigi': 0.01,
+                        'Ibaraki': 0.01,
+                    },
+                    '3week_SoE': {
+                        'Chiba': 0.008,
+                        'Kanagawa': 0.008,
+                        'Saitama': 0.008,
+                        'Gunma': 0.008,
+                        'Tochigi': 0.008,
+                        'Ibaraki': 0.008,
+                    },
+                    '4week_SoE': {
+                        'Chiba': 0.008,
+                        'Kanagawa': 0.008,
+                        'Saitama': 0.008,
+                        'Gunma': 0.008,
+                        'Tochigi': 0.008,
+                        'Ibaraki': 0.008,
+                    },
+                    '5__week_SoE': {
+                        'Chiba': 0.008,
+                        'Kanagawa': 0.008,
+                        'Saitama': 0.008,
+                        'Gunma': 0.008,
+                        'Tochigi': 0.008,
+                        'Ibaraki': 0.008,
+                    },
+                    'after_SoE': {
+                        'Chiba': 0.016,
+                        'Kanagawa': 0.016,
+                        'Saitama': 0.016,
+                        'Gunma': 0.016,
+                        'Tochigi': 0.016,
+                        'Ibaraki': 0.016,
+                    },
+                },
+            },
+            {
+                'name':
+                'Chiba',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.12, 0.012],
+                    '5__week_SoE': [0.12, 0.012],
+                    'after_SoE': [0.12, 0.012],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [989998, 1, 1, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [569984, 10, 6, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [509988, 7, 5, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [1529990, 6, 4, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [475000, 0, 0, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [665000, 0, 0, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [425000, 0, 0, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [595000, 0, 0, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [110000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [190000, 0, 0, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [170000, 0, 0, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [170000, 0, 0, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.09,
+                        'Kanagawa': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.028
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.1,
+                        'Kanagawa': 0.04,
+                        'Saitama': 0.04,
+                        'Gunma': 0.01,
+                        'Tochigi': 0.01,
+                        'Ibaraki': 0.04
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.09,
+                        'Kanagawa': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.036
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.06,
+                        'Kanagawa': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.024
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.06,
+                        'Kanagawa': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.024
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.06,
+                        'Kanagawa': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.024
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.07,
+                        'Kanagawa': 0.028,
+                        'Saitama': 0.028,
+                        'Gunma': 0.007,
+                        'Tochigi': 0.007,
+                        'Ibaraki': 0.028
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.09,
+                        'Kanagawa': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.028
+                    },
+                },
+            },
+            {
+                'name':
+                'Kanagawa',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.12, 0.012],
+                    '5__week_SoE': [0.12, 0.012],
+                    'after_SoE': [0.12, 0.012],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [1349998, 1, 1, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [839980, 10, 10, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [749985, 17, 8, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [2069987, 6, 7, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [700000, 0, 0, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [980000, 0, 0, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [625000, 0, 0, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [875000, 0, 0, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [150000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [280000, 0, 0, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [250000, 0, 0, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [230000, 0, 0, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.009
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.1,
+                        'Chiba': 0.04,
+                        'Saitama': 0.04,
+                        'Gunma': 0.01,
+                        'Tochigi': 0.01,
+                        'Ibaraki': 0.01
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.009
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.006
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.006
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.006
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.07,
+                        'Chiba': 0.028,
+                        'Saitama': 0.028,
+                        'Gunma': 0.007,
+                        'Tochigi': 0.007,
+                        'Ibaraki': 0.007
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.009
+                    },
+                },
+            },
+            {
+                'name':
+                'Saitama',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.12, 0.012],
+                    '5__week_SoE': [0.12, 0.012],
+                    'after_SoE': [0.12, 0.012],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [1080000, 0, 0, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [659996, 2, 2, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [599997, 2, 1, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [1709997, 2, 1, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [550000, 0, 0, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [770000, 0, 0, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [500000, 0, 0, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [700000, 0, 0, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [120000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [220000, 0, 0, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [200000, 0, 0, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [190000, 0, 0, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.018,
+                        'Kanagawa': 0.018,
+                        'Gunma': 0.018,
+                        'Tochigi': 0.018,
+                        'Ibaraki': 0.018
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.1,
+                        'Chiba': 0.02,
+                        'Kanagawa': 0.02,
+                        'Gunma': 0.02,
+                        'Tochigi': 0.02,
+                        'Ibaraki': 0.02
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.018,
+                        'Kanagawa': 0.018,
+                        'Gunma': 0.018,
+                        'Tochigi': 0.018,
+                        'Ibaraki': 0.018
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.012,
+                        'Kanagawa': 0.012,
+                        'Gunma': 0.012,
+                        'Tochigi': 0.012,
+                        'Ibaraki': 0.012
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.012,
+                        'Kanagawa': 0.012,
+                        'Gunma': 0.012,
+                        'Tochigi': 0.012,
+                        'Ibaraki': 0.012
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.012,
+                        'Kanagawa': 0.012,
+                        'Gunma': 0.012,
+                        'Tochigi': 0.012,
+                        'Ibaraki': 0.012
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.07,
+                        'Chiba': 0.014,
+                        'Kanagawa': 0.014,
+                        'Gunma': 0.014,
+                        'Tochigi': 0.014,
+                        'Ibaraki': 0.014
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.018,
+                        'Kanagawa': 0.018,
+                        'Gunma': 0.018,
+                        'Tochigi': 0.018,
+                        'Ibaraki': 0.018
+                    },
+                },
+            },
+            {
+                'name':
+                'Gunma',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.12, 0.012],
+                    '5__week_SoE': [0.12, 0.012],
+                    'after_SoE': [0.12, 0.012],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [270000, 0, 0, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [150000, 0, 0, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [150000, 0, 0, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [540000, 0, 0, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [125000, 0, 0, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [175000, 0, 0, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [125000, 0, 0, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [175000, 0, 0, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [30000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [50000, 0, 0, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [50000, 0, 0, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [60000, 0, 0, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Tochigi': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.01,
+                        'Chiba': 0.01,
+                        'Kanagawa': 0.01,
+                        'Saitama': 0.04,
+                        'Tochigi': 0.04,
+                        'Ibaraki': 0.04
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Tochigi': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Tochigi': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Tochigi': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Tochigi': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.007,
+                        'Chiba': 0.007,
+                        'Kanagawa': 0.007,
+                        'Saitama': 0.028,
+                        'Tochigi': 0.028,
+                        'Ibaraki': 0.028
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Tochigi': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                },
+            },
+            {
+                'name':
+                'Tochigi',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.12, 0.012],
+                    '5__week_SoE': [0.12, 0.012],
+                    'after_SoE': [0.12, 0.012],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [270000, 0, 0, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [149998, 1, 1, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [149999, 1, 0, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [540000, 0, 0, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [125000, 0, 0, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [175000, 0, 0, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [125000, 0, 0, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [175000, 0, 0, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [30000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [50000, 0, 0, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [50000, 0, 0, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [60000, 0, 0, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.01,
+                        'Chiba': 0.01,
+                        'Kanagawa': 0.01,
+                        'Saitama': 0.04,
+                        'Gunma': 0.04,
+                        'Ibaraki': 0.04
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.007,
+                        'Chiba': 0.007,
+                        'Kanagawa': 0.007,
+                        'Saitama': 0.028,
+                        'Gunma': 0.028,
+                        'Ibaraki': 0.028
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                },
+            },
+            {
+                'name':
+                'Ibaraki',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.12, 0.012],
+                    '5__week_SoE': [0.12, 0.012],
+                    'after_SoE': [0.12, 0.012],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [450000, 0, 0, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [240000, 0, 0, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [240000, 0, 0, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [720000, 0, 0, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [200000, 0, 0, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [280000, 0, 0, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [200000, 0, 0, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [280000, 0, 0, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [50000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [80000, 0, 0, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [80000, 0, 0, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [80000, 0, 0, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.036,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Tochigi': 0.036
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.01,
+                        'Chiba': 0.04,
+                        'Kanagawa': 0.01,
+                        'Saitama': 0.04,
+                        'Gunma': 0.04,
+                        'Tochigi': 0.04
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.036,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Tochigi': 0.036
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.024,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Tochigi': 0.024
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.024,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Tochigi': 0.024
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.024,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Tochigi': 0.024
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.007,
+                        'Chiba': 0.028,
+                        'Kanagawa': 0.007,
+                        'Saitama': 0.028,
+                        'Gunma': 0.028,
+                        'Tochigi': 0.028
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.036,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Tochigi': 0.036
+                    },
+                },
+            },
+        ]
+
+        return self._create_citys(condition, smm)
+
+
+class Izer_TL_GO_LI_f_SoE_kanto(Default_Izer):
+    def __init__(self, config):
+        super(Izer_TL_GO_LI_f_SoE_kanto, self).__init__(config)
+
+    def create_citys(self, smm):
+        condition = [
+            {
+                'name':
+                'Tokyo',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.12, 0.012],
+                    '5__week_SoE': [0.12, 0.012],
+                    'after_SoE': [0.12, 0.012],
+                },
+                'peaple': [
+                    # 2
+                    self.person_group(2, '00to19_1', 1, [1889922, 35, 44, 0.0]),
+                    self.person_group(3, '20to44_1', 1,
+                                      [1439741, 115, 144, 0.0]),
+                    self.person_group(4, '45to64_1', 1,
+                                      [1019806, 86, 108, 0.0]),
+                    self.person_group(5, '65to99_1', 1,
+                                      [2699496, 223, 281, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [1199785, 96, 120, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [1679698, 134, 168, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [849838, 72, 90, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [1189774, 100, 126, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [209991, 4, 5, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [479914, 38, 48, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [339935, 29, 36, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [299944, 25, 31, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Chiba': 0.016,
+                        'Kanagawa': 0.016,
+                        'Saitama': 0.016,
+                        'Gunma': 0.016,
+                        'Tochigi': 0.016,
+                        'Ibaraki': 0.016,
+                    },
+                    'before_2_SoE': {
+                        'Chiba': 0.018,
+                        'Kanagawa': 0.018,
+                        'Saitama': 0.018,
+                        'Gunma': 0.018,
+                        'Tochigi': 0.018,
+                        'Ibaraki': 0.018,
+                    },
+                    '1week_SoE': {
+                        'Chiba': 0.013,
+                        'Kanagawa': 0.013,
+                        'Saitama': 0.013,
+                        'Gunma': 0.013,
+                        'Tochigi': 0.013,
+                        'Ibaraki': 0.013,
+                    },
+                    '2week_SoE': {
+                        'Chiba': 0.01,
+                        'Kanagawa': 0.01,
+                        'Saitama': 0.01,
+                        'Gunma': 0.01,
+                        'Tochigi': 0.01,
+                        'Ibaraki': 0.01,
+                    },
+                    '3week_SoE': {
+                        'Chiba': 0.008,
+                        'Kanagawa': 0.008,
+                        'Saitama': 0.008,
+                        'Gunma': 0.008,
+                        'Tochigi': 0.008,
+                        'Ibaraki': 0.008,
+                    },
+                    '4week_SoE': {
+                        'Chiba': 0.008,
+                        'Kanagawa': 0.008,
+                        'Saitama': 0.008,
+                        'Gunma': 0.008,
+                        'Tochigi': 0.008,
+                        'Ibaraki': 0.008,
+                    },
+                    '5__week_SoE': {
+                        'Chiba': 0.008,
+                        'Kanagawa': 0.008,
+                        'Saitama': 0.008,
+                        'Gunma': 0.008,
+                        'Tochigi': 0.008,
+                        'Ibaraki': 0.008,
+                    },
+                    'after_SoE': {
+                        'Chiba': 0.016,
+                        'Kanagawa': 0.016,
+                        'Saitama': 0.016,
+                        'Gunma': 0.016,
+                        'Tochigi': 0.016,
+                        'Ibaraki': 0.016,
+                    },
+                },
+            },
+            {
+                'name':
+                'Chiba',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.12, 0.012],
+                    '5__week_SoE': [0.12, 0.012],
+                    'after_SoE': [0.12, 0.012],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [989972, 11, 17, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [569906, 38, 57, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [509929, 28, 42, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [1529816, 73, 110, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [474922, 31, 47, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [664890, 44, 66, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [424941, 23, 35, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [594918, 33, 50, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [109997, 1, 2, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [189969, 13, 19, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [169976, 9, 14, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [169980, 8, 12, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.09,
+                        'Kanagawa': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.028
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.1,
+                        'Kanagawa': 0.04,
+                        'Saitama': 0.04,
+                        'Gunma': 0.01,
+                        'Tochigi': 0.01,
+                        'Ibaraki': 0.04
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.09,
+                        'Kanagawa': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.036
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.06,
+                        'Kanagawa': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.024
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.06,
+                        'Kanagawa': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.024
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.06,
+                        'Kanagawa': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.024
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.07,
+                        'Kanagawa': 0.028,
+                        'Saitama': 0.028,
+                        'Gunma': 0.007,
+                        'Tochigi': 0.007,
+                        'Ibaraki': 0.028
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.09,
+                        'Kanagawa': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.028
+                    },
+                },
+            },
+            {
+                'name':
+                'Kanagawa',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.12, 0.012],
+                    '5__week_SoE': [0.12, 0.012],
+                    'after_SoE': [0.12, 0.012],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [1349954, 20, 26, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [839848, 67, 85, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [749886, 50, 64, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [2069703, 131, 167, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [699873, 56, 71, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [979822, 78, 100, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [624905, 42, 53, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [874867, 59, 75, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [149995, 2, 3, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [279949, 22, 28, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [249962, 17, 21, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [229967, 15, 19, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.009
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.1,
+                        'Chiba': 0.04,
+                        'Saitama': 0.04,
+                        'Gunma': 0.01,
+                        'Tochigi': 0.01,
+                        'Ibaraki': 0.01
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.009
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.006
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.006
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.006
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.07,
+                        'Chiba': 0.028,
+                        'Saitama': 0.028,
+                        'Gunma': 0.007,
+                        'Tochigi': 0.007,
+                        'Ibaraki': 0.007
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.009
+                    },
+                },
+            },
+            {
+                'name':
+                'Saitama',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.12, 0.012],
+                    '5__week_SoE': [0.12, 0.012],
+                    'after_SoE': [0.12, 0.012],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [1079970, 15, 15, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [659900, 49, 51, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [599925, 37, 38, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [1709804, 96, 100, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [549916, 41, 43, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [769883, 58, 60, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [499937, 31, 32, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [699912, 43, 45, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [119997, 2, 2, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [219967, 16, 17, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [199975, 12, 13, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [189978, 11, 11, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.018,
+                        'Kanagawa': 0.018,
+                        'Gunma': 0.018,
+                        'Tochigi': 0.018,
+                        'Ibaraki': 0.018
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.1,
+                        'Chiba': 0.02,
+                        'Kanagawa': 0.02,
+                        'Gunma': 0.02,
+                        'Tochigi': 0.02,
+                        'Ibaraki': 0.02
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.018,
+                        'Kanagawa': 0.018,
+                        'Gunma': 0.018,
+                        'Tochigi': 0.018,
+                        'Ibaraki': 0.018
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.012,
+                        'Kanagawa': 0.012,
+                        'Gunma': 0.012,
+                        'Tochigi': 0.012,
+                        'Ibaraki': 0.012
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.012,
+                        'Kanagawa': 0.012,
+                        'Gunma': 0.012,
+                        'Tochigi': 0.012,
+                        'Ibaraki': 0.012
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.012,
+                        'Kanagawa': 0.012,
+                        'Gunma': 0.012,
+                        'Tochigi': 0.012,
+                        'Ibaraki': 0.012
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.07,
+                        'Chiba': 0.014,
+                        'Kanagawa': 0.014,
+                        'Gunma': 0.014,
+                        'Tochigi': 0.014,
+                        'Ibaraki': 0.014
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.018,
+                        'Kanagawa': 0.018,
+                        'Gunma': 0.018,
+                        'Tochigi': 0.018,
+                        'Ibaraki': 0.018
+                    },
+                },
+            },
+            {
+                'name':
+                'Gunma',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.12, 0.012],
+                    '5__week_SoE': [0.12, 0.012],
+                    'after_SoE': [0.12, 0.012],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [269994, 3, 2, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [149981, 11, 8, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [149986, 8, 6, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [539964, 21, 15, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [124985, 9, 7, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [174978, 13, 9, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [124988, 7, 5, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [174984, 9, 7, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [30000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [49994, 4, 3, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [49995, 3, 2, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [59996, 2, 2, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Tochigi': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.01,
+                        'Chiba': 0.01,
+                        'Kanagawa': 0.01,
+                        'Saitama': 0.04,
+                        'Tochigi': 0.04,
+                        'Ibaraki': 0.04
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Tochigi': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Tochigi': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Tochigi': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Tochigi': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.007,
+                        'Chiba': 0.007,
+                        'Kanagawa': 0.007,
+                        'Saitama': 0.028,
+                        'Tochigi': 0.028,
+                        'Ibaraki': 0.028
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Tochigi': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                },
+            },
+            {
+                'name':
+                'Tochigi',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.12, 0.012],
+                    '5__week_SoE': [0.12, 0.012],
+                    'after_SoE': [0.12, 0.012],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [269995, 3, 2, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [149983, 9, 8, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [149987, 7, 6, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [539967, 18, 15, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [124986, 8, 6, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [174980, 11, 9, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [124989, 6, 5, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [174985, 8, 7, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [30000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [49994, 3, 3, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [49996, 2, 2, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [59996, 2, 2, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.01,
+                        'Chiba': 0.01,
+                        'Kanagawa': 0.01,
+                        'Saitama': 0.04,
+                        'Gunma': 0.04,
+                        'Ibaraki': 0.04
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.007,
+                        'Chiba': 0.007,
+                        'Kanagawa': 0.007,
+                        'Saitama': 0.028,
+                        'Gunma': 0.028,
+                        'Ibaraki': 0.028
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                },
+            },
+            {
+                'name':
+                'Ibaraki',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.01],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.12, 0.012],
+                    '5__week_SoE': [0.12, 0.012],
+                    'after_SoE': [0.12, 0.012],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [449992, 5, 4, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [239972, 15, 13, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [239979, 11, 10, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [719946, 29, 25, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [199977, 13, 11, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [279968, 18, 15, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [199983, 9, 8, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [279976, 13, 11, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [49999, 1, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [79991, 5, 4, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [79993, 4, 3, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [79994, 3, 3, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.036,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Tochigi': 0.036
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.01,
+                        'Chiba': 0.04,
+                        'Kanagawa': 0.01,
+                        'Saitama': 0.04,
+                        'Gunma': 0.04,
+                        'Tochigi': 0.04
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.036,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Tochigi': 0.036
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.024,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Tochigi': 0.024
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.024,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Tochigi': 0.024
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.024,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Tochigi': 0.024
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.007,
+                        'Chiba': 0.028,
+                        'Kanagawa': 0.007,
+                        'Saitama': 0.028,
+                        'Gunma': 0.028,
+                        'Tochigi': 0.028
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.036,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Tochigi': 0.036
+                    },
+                },
+            },
+        ]
+
+        return self._create_citys(condition, smm)
+
+
+class Izer_TL_GO_LI_kanto_with_dist(Default_Izer):
+    def __init__(self, config):
+        super(Izer_TL_GO_LI_kanto_with_dist, self).__init__(config)
+
+    def create_citys(self, smm):
+        condition = [
+            {
+                'name':
+                'Tokyo',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.1],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.14, 0.014],
+                    '5__week_SoE': [0.14, 0.014],
+                    'after_SoE': [0.14, 0.014],
+                },
+                'peaple': [
+                    # 2
+                    self.person_group(2, '00to19_1', 1, [1889994, 3, 1, 0.0]),
+                    self.person_group(3, '20to44_1', 1,
+                                      [1439955, 30, 15, 0.0]),
+                    self.person_group(4, '45to64_1', 1,
+                                      [1019967, 22, 11, 0.0]),
+                    self.person_group(5, '65to99_1', 1,
+                                      [2699971, 19, 10, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [1200000, 0, 0, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [1680000, 0, 0, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [850000, 0, 0, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [1190000, 0, 0, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [210000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [480000, 0, 0, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [340000, 0, 0, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [300000, 0, 0, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Chiba': 0.016,
+                        'Kanagawa': 0.016,
+                        'Saitama': 0.016,
+                        'Gunma': 0.016,
+                        'Tochigi': 0.016,
+                        'Ibaraki': 0.016,
+                    },
+                    'before_2_SoE': {
+                        'Chiba': 0.018,
+                        'Kanagawa': 0.018,
+                        'Saitama': 0.018,
+                        'Gunma': 0.018,
+                        'Tochigi': 0.018,
+                        'Ibaraki': 0.018,
+                    },
+                    '1week_SoE': {
+                        'Chiba': 0.013,
+                        'Kanagawa': 0.013,
+                        'Saitama': 0.013,
+                        'Gunma': 0.013,
+                        'Tochigi': 0.013,
+                        'Ibaraki': 0.013,
+                    },
+                    '2week_SoE': {
+                        'Chiba': 0.01,
+                        'Kanagawa': 0.01,
+                        'Saitama': 0.01,
+                        'Gunma': 0.01,
+                        'Tochigi': 0.01,
+                        'Ibaraki': 0.01,
+                    },
+                    '3week_SoE': {
+                        'Chiba': 0.008,
+                        'Kanagawa': 0.008,
+                        'Saitama': 0.008,
+                        'Gunma': 0.008,
+                        'Tochigi': 0.008,
+                        'Ibaraki': 0.008,
+                    },
+                    '4week_SoE': {
+                        'Chiba': 0.008,
+                        'Kanagawa': 0.008,
+                        'Saitama': 0.008,
+                        'Gunma': 0.008,
+                        'Tochigi': 0.008,
+                        'Ibaraki': 0.008,
+                    },
+                    '5__week_SoE': {
+                        'Chiba': 0.008,
+                        'Kanagawa': 0.008,
+                        'Saitama': 0.008,
+                        'Gunma': 0.008,
+                        'Tochigi': 0.008,
+                        'Ibaraki': 0.008,
+                    },
+                    'after_SoE': {
+                        'Chiba': 0.016,
+                        'Kanagawa': 0.016,
+                        'Saitama': 0.016,
+                        'Gunma': 0.016,
+                        'Tochigi': 0.016,
+                        'Ibaraki': 0.016,
+                    },
+                },
+            },
+            {
+                'name':
+                'Chiba',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.1],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.14, 0.014],
+                    '5__week_SoE': [0.14, 0.014],
+                    'after_SoE': [0.14, 0.014],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [989998, 1, 1, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [569981, 13, 6, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [509985, 10, 5, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [1529988, 8, 4, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [475000, 0, 0, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [665000, 0, 0, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [425000, 0, 0, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [595000, 0, 0, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [110000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [190000, 0, 0, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [170000, 0, 0, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [170000, 0, 0, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.09,
+                        'Kanagawa': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.028
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.1,
+                        'Kanagawa': 0.04,
+                        'Saitama': 0.04,
+                        'Gunma': 0.01,
+                        'Tochigi': 0.01,
+                        'Ibaraki': 0.04
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.09,
+                        'Kanagawa': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.036
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.06,
+                        'Kanagawa': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.024
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.06,
+                        'Kanagawa': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.024
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.06,
+                        'Kanagawa': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.024
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.07,
+                        'Kanagawa': 0.028,
+                        'Saitama': 0.028,
+                        'Gunma': 0.007,
+                        'Tochigi': 0.007,
+                        'Ibaraki': 0.028
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.09,
+                        'Kanagawa': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.028
+                    },
+                },
+            },
+            {
+                'name':
+                'Kanagawa',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.1],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.14, 0.014],
+                    '5__week_SoE': [0.14, 0.014],
+                    'after_SoE': [0.14, 0.014],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [1349997, 2, 1, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [839970, 20, 10, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [749978, 15, 8, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [2069980, 13, 7, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [700000, 0, 0, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [980000, 0, 0, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [625000, 0, 0, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [875000, 0, 0, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [150000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [280000, 0, 0, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [250000, 0, 0, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [230000, 0, 0, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.009
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.1,
+                        'Chiba': 0.04,
+                        'Saitama': 0.04,
+                        'Gunma': 0.01,
+                        'Tochigi': 0.01,
+                        'Ibaraki': 0.01
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.009
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.006
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.006
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.024,
+                        'Saitama': 0.024,
+                        'Gunma': 0.006,
+                        'Tochigi': 0.006,
+                        'Ibaraki': 0.006
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.07,
+                        'Chiba': 0.028,
+                        'Saitama': 0.028,
+                        'Gunma': 0.007,
+                        'Tochigi': 0.007,
+                        'Ibaraki': 0.007
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.036,
+                        'Saitama': 0.036,
+                        'Gunma': 0.009,
+                        'Tochigi': 0.009,
+                        'Ibaraki': 0.009
+                    },
+                },
+            },
+            {
+                'name':
+                'Saitama',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.1],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.14, 0.014],
+                    '5__week_SoE': [0.14, 0.014],
+                    'after_SoE': [0.14, 0.014],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [1079999, 1, 0, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [659995, 3, 2, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [599997, 2, 1, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [1709997, 2, 1, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [550000, 0, 0, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [770000, 0, 0, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [500000, 0, 0, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [700000, 0, 0, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [120000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [220000, 0, 0, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [200000, 0, 0, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [190000, 0, 0, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.018,
+                        'Kanagawa': 0.018,
+                        'Gunma': 0.018,
+                        'Tochigi': 0.018,
+                        'Ibaraki': 0.018
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.1,
+                        'Chiba': 0.02,
+                        'Kanagawa': 0.02,
+                        'Gunma': 0.02,
+                        'Tochigi': 0.02,
+                        'Ibaraki': 0.02
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.018,
+                        'Kanagawa': 0.018,
+                        'Gunma': 0.018,
+                        'Tochigi': 0.018,
+                        'Ibaraki': 0.018
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.012,
+                        'Kanagawa': 0.012,
+                        'Gunma': 0.012,
+                        'Tochigi': 0.012,
+                        'Ibaraki': 0.012
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.012,
+                        'Kanagawa': 0.012,
+                        'Gunma': 0.012,
+                        'Tochigi': 0.012,
+                        'Ibaraki': 0.012
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.06,
+                        'Chiba': 0.012,
+                        'Kanagawa': 0.012,
+                        'Gunma': 0.012,
+                        'Tochigi': 0.012,
+                        'Ibaraki': 0.012
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.07,
+                        'Chiba': 0.014,
+                        'Kanagawa': 0.014,
+                        'Gunma': 0.014,
+                        'Tochigi': 0.014,
+                        'Ibaraki': 0.014
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.09,
+                        'Chiba': 0.018,
+                        'Kanagawa': 0.018,
+                        'Gunma': 0.018,
+                        'Tochigi': 0.018,
+                        'Ibaraki': 0.018
+                    },
+                },
+            },
+            {
+                'name':
+                'Gunma',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.1],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.14, 0.014],
+                    '5__week_SoE': [0.14, 0.014],
+                    'after_SoE': [0.14, 0.014],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [270000, 0, 0, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [150000, 0, 0, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [150000, 0, 0, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [540000, 0, 0, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [125000, 0, 0, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [175000, 0, 0, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [125000, 0, 0, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [175000, 0, 0, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [30000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [50000, 0, 0, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [50000, 0, 0, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [60000, 0, 0, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Tochigi': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.01,
+                        'Chiba': 0.01,
+                        'Kanagawa': 0.01,
+                        'Saitama': 0.04,
+                        'Tochigi': 0.04,
+                        'Ibaraki': 0.04
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Tochigi': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Tochigi': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Tochigi': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Tochigi': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.007,
+                        'Chiba': 0.007,
+                        'Kanagawa': 0.007,
+                        'Saitama': 0.028,
+                        'Tochigi': 0.028,
+                        'Ibaraki': 0.028
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Tochigi': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                },
+            },
+            {
+                'name':
+                'Tochigi',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.1],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.14, 0.014],
+                    '5__week_SoE': [0.14, 0.014],
+                    'after_SoE': [0.14, 0.014],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [270000, 0, 0, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [149997, 2, 1, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [150000, 0, 0, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [540000, 0, 0, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [125000, 0, 0, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [175000, 0, 0, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [125000, 0, 0, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [175000, 0, 0, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [30000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [50000, 0, 0, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [50000, 0, 0, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [60000, 0, 0, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.01,
+                        'Chiba': 0.01,
+                        'Kanagawa': 0.01,
+                        'Saitama': 0.04,
+                        'Gunma': 0.04,
+                        'Ibaraki': 0.04
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.006,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Ibaraki': 0.024
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.007,
+                        'Chiba': 0.007,
+                        'Kanagawa': 0.007,
+                        'Saitama': 0.028,
+                        'Gunma': 0.028,
+                        'Ibaraki': 0.028
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.009,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Ibaraki': 0.036
+                    },
+                },
+            },
+            {
+                'name':
+                'Ibaraki',
+                'p_remove': {
+                    'before_SoE': [0.1, 0.01],
+                    'before_2_SoE': [0.1, 0.01],
+                    '1week_SoE': [0.1, 0.1],
+                    '2week_SoE': [0.12, 0.012],
+                    '3week_SoE': [0.12, 0.012],
+                    '4week_SoE': [0.14, 0.014],
+                    '5__week_SoE': [0.14, 0.014],
+                    'after_SoE': [0.14, 0.014],
+                },
+                'peaple': [
+                    self.person_group(2, '00to19_1', 1, [450000, 0, 0, 0.0]),
+                    self.person_group(3, '20to44_1', 1, [240000, 0, 0, 0.0]),
+                    self.person_group(4, '45to64_1', 1, [240000, 0, 0, 0.0]),
+                    self.person_group(5, '65to99_1', 1, [720000, 0, 0, 0.0]),
+                    self.person_group(6, '20to44_2_tele1', 1,
+                                      [200000, 0, 0, 0.0]),
+                    self.person_group(7, '20to44_2_tele2', 1,
+                                      [280000, 0, 0, 0.0]),
+                    self.person_group(8, '45to64_2_tele1', 1,
+                                      [200000, 0, 0, 0.0]),
+                    self.person_group(9, '45to64_2_tele2', 1,
+                                      [280000, 0, 0, 0.0]),
+                    self.person_group(10, '00to19_3_goout', 1,
+                                      [50000, 0, 0, 0.0]),
+                    self.person_group(11, '20to44_3_goout', 1,
+                                      [80000, 0, 0, 0.0]),
+                    self.person_group(12, '45to64_3_goout', 1,
+                                      [80000, 0, 0, 0.0]),
+                    self.person_group(13, '65to99_3_goout', 1,
+                                      [80000, 0, 0, 0.0]),
+                ],
+                'areas': [
+                    self.area_group(
+                        0, 'ncroud', {
+                            'before_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'before_2_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '1week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '2week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '3week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '4week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            '5__week_SoE': [[0.0002] * 24, [0.0002] * 24],
+                            'after_SoE': [[0.0002] * 24, [0.0002] * 24],
+                        }),
+                    self.area_group(
+                        1, 'mid', {
+                            'before_SoE': [[0.002] * 24, [0.002] * 24],
+                            'before_2_SoE': [[0.002] * 24, [0.002] * 24],
+                            '1week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '2week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '3week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '4week_SoE': [[0.002] * 24, [0.002] * 24],
+                            '5__week_SoE': [[0.002] * 24, [0.002] * 24],
+                            'after_SoE': [[0.002] * 24, [0.002] * 24],
+                        }),
+                    self.area_group(
+                        2, 'croud', {
+                            'before_SoE': [[0.02] * 24, [0.02] * 24],
+                            'before_2_SoE': [[0.02] * 24, [0.02] * 24],
+                            '1week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '2week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '3week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '4week_SoE': [[0.02] * 24, [0.02] * 24],
+                            '5__week_SoE': [[0.02] * 24, [0.02] * 24],
+                            'after_SoE': [[0.02] * 24, [0.02] * 24],
+                        }),
+                ],
+                'move_out': {
+                    'before_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.036,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Tochigi': 0.036
+                    },
+                    'before_2_SoE': {
+                        'Tokyo': 0.01,
+                        'Chiba': 0.04,
+                        'Kanagawa': 0.01,
+                        'Saitama': 0.04,
+                        'Gunma': 0.04,
+                        'Tochigi': 0.04
+                    },
+                    '1week_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.036,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Tochigi': 0.036
+                    },
+                    '2week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.024,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Tochigi': 0.024
+                    },
+                    '3week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.024,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Tochigi': 0.024
+                    },
+                    '4week_SoE': {
+                        'Tokyo': 0.006,
+                        'Chiba': 0.024,
+                        'Kanagawa': 0.006,
+                        'Saitama': 0.024,
+                        'Gunma': 0.024,
+                        'Tochigi': 0.024
+                    },
+                    '5__week_SoE': {
+                        'Tokyo': 0.007,
+                        'Chiba': 0.028,
+                        'Kanagawa': 0.007,
+                        'Saitama': 0.028,
+                        'Gunma': 0.028,
+                        'Tochigi': 0.028
+                    },
+                    'after_SoE': {
+                        'Tokyo': 0.009,
+                        'Chiba': 0.036,
+                        'Kanagawa': 0.009,
+                        'Saitama': 0.036,
+                        'Gunma': 0.036,
+                        'Tochigi': 0.036
+                    },
+                },
+            },
+        ]
+
+        condition = self.set_initial_dist(condition)
+
+        return self._create_citys(condition, smm)
+
+    def set_initial_dist(self, condition):
+        import util
+        history = util.load_status(FLAGS.dist_file)
+        index = 0
+        for i, v in enumerate(history.h):
+            day = v['day']
+            if day.date == FLAGS.dist_day:
+                index = i
+
+        target_dist = history.h[index]['dist']
+
+        from settings import Peaple_Groups
+        for cc in condition:
+            city_name = cc['name']
+            dist_info = target_dist[city_name]
+            peaple = []
+            for k, v in dist_info.items():
+                peaple.append(
+                    self.person_group(Peaple_Groups[k], k, 1, [v[0], v[1], v[2], 0]))
+
+            cc['peaple'] = peaple
+
+        return condition
