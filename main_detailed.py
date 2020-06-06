@@ -51,12 +51,12 @@ def sim(argv):
         # calc(Izer_TL_GO_LI_kanto_with_dist, FLAGS,
         #      'kanto_after_' + datetime.now().strftime('%Y%m%d%H%M'))
         calc(Izer_TL_GO_LI_kanto_with_dist, FLAGS,
-             'kanto_after_SOE_start_5-24_w4576_C2_' + datetime.now().strftime('%Y%m%d%H%M'))
+             'kanto_after_SOE_start_5-24_w4576_C5_' + datetime.now().strftime('%Y%m%d%H%M'))
     else:
         names = [
             'base_3-1_4-6_w1167',
             'base_4-7_5-24_w4576',
-            'kanto_after_SOE_start_5-24_w4576_C1_202006051141',
+            'kanto_after_SOE_start_5-24_w4576_C24_202006052013',
         ]
         plots(names)
 
