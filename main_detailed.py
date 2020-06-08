@@ -22,8 +22,8 @@ FLAGS.dist_file = 'base_4-7_5-24_w4576'
 # FLAGS.dist_day = '2020/04/06'
 # FLAGS.dist_file = 'base_3-1_4-6_w1167'
 
-mode = True
-# mode = False
+# mode = True
+mode = False
 
 
 def sim(argv):
@@ -56,7 +56,7 @@ def sim(argv):
         names = [
             'base_3-1_4-6_w1167',
             'base_4-7_5-24_w4576',
-            'kanto_after_SOE_start_5-24_w4576_C24_202006052013',
+            # 'kanto_after_SOE_start_5-24_w4576_C24_202006052013',
         ]
         plots(names)
 
@@ -83,6 +83,7 @@ def plots(basenames):
                            infected=True,
                            removed=True,
                            use_def=False,
+                           tergets=None,
                            filename=None,
                            save=False,
                            title=None,

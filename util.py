@@ -178,6 +178,7 @@ def show_history_list(history_list,
                       infected=True,
                       removed=True,
                       use_def=True,
+                      tergets=None,
                       filename=None,
                       save=True,
                       title=None,
@@ -213,12 +214,13 @@ def show_history_list(history_list,
             INF_array = np.asarray(arrays[1][1:-1])
             REM_array = np.asarray(arrays[2][1:-1])
         x_array = np.arange(INF_array.size)
-        if susceptible:
-            plt.plot(x_array, SEC_array, label='{}_S'.format(city_name))
-        if infected:
-            plt.plot(x_array, INF_array, label='{}_I'.format(city_name))
-        if removed:
-            plt.plot(x_array, REM_array, label='{}_R'.format(city_name))
+        if tergets is None or city_name in tergets:
+            if susceptible:
+                plt.plot(x_array, SEC_array, label='{}_S'.format(city_name))
+            if infected:
+                plt.plot(x_array, INF_array, label='{}_I'.format(city_name))
+            if removed:
+                plt.plot(x_array, REM_array, label='{}_R'.format(city_name))
 
     plt.legend()
 
