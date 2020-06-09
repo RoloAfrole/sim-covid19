@@ -22,14 +22,14 @@ FLAGS.dist_file = 'base_4-7_5-24_w4576'
 # FLAGS.dist_day = '2020/04/06'
 # FLAGS.dist_file = 'base_3-1_4-6_w1167'
 
-FLAGS.redist_flg = '2020/05/24'
+FLAGS.redist_flg = True
 FLAGS.redist_from = ['20to44_1', '45to64_1']
 FLAGS.redist_to = ['20to44_2_tele1', '45to64_2_tele1']
 FLAGS.redist_ratio = ['0.25', '0.25'] # redistribute 10%
 
 
-# mode = True
-mode = False
+mode = True
+# mode = False
 
 
 def sim(argv):
