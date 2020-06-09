@@ -6877,12 +6877,12 @@ class Izer_TL_GO_LI_kanto_with_dist(Default_Izer):
 
         for k, v in dist_info.items():
             if k in from_list:
-                s = sum(v)
+                s = sum(v.values())
                 index = from_list.index(k)
                 num = int(s * ratio_list[index])
                 redist_num_dic[k] = -num
                 redist_num_dic[to_list[index]] = num
-        
+
         for k, v in dist_info.items():
             if k in redist_num_dic:
                 v[0] += redist_num_dic[k]
