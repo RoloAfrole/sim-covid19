@@ -15,6 +15,10 @@ FLAGS = flags.FLAGS
 
 flags.DEFINE_string('dist_day', '2020/4/7', 'start_day')
 flags.DEFINE_string('dist_file', '', 'load file name')
+flags.DEFINE_bool('redist_flg', False, 'redistribute pop')
+flags.DEFINE_list('redist_from', ['20to44_2_tele2', '45to64_2_tele2'], '')
+flags.DEFINE_list('redist_to', ['20to44_2_tele1', '45to64_2_tele1'], '')
+flags.DEFINE_list('redist_ratio', ['0.5', '0.5'], '')
 
 
 class Initializer(object):
@@ -6854,6 +6858,8 @@ class Izer_TL_GO_LI_kanto_with_dist(Default_Izer):
         for cc in condition:
             city_name = cc['name']
             dist_info = target_dist[city_name]
+            if FLAGS.redist_flg:
+                dist_info = self.redist_pop(dist_info)
             peaple = []
             for k, v in dist_info.items():
                 peaple.append(
@@ -6862,3 +6868,23 @@ class Izer_TL_GO_LI_kanto_with_dist(Default_Izer):
             cc['peaple'] = peaple
 
         return condition
+
+    def redist_pop(self, dist_info):
+        from_list = FLAGS.redist_from
+        to_list = FLAGS.redist_to
+        ratio_list = [float(r) for r in FLAGS.redist_ratio]
+        redist_num_dic = {}
+
+        for k, v in dist_info.items():
+            if k in from_list:
+                s = sum(v)
+                index = from_list.index(k)
+                num = int(s * ratio_list[index])
+                redist_num_dic[k] = -num
+                redist_num_dic[to_list[index]] = num
+        
+        for k, v in dist_info.items():
+            if k in redist_num_dic:
+                v[0] += redist_num_dic[k]
+
+        return dist_info
