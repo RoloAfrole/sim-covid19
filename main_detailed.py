@@ -17,19 +17,23 @@ FLAGS = flags.FLAGS
 FLAGS.max_size_per_it = 1000000
 FLAGS.pool_size = 16
 
-FLAGS.dist_day = '2020/05/24'
-FLAGS.dist_file = 'base_4-7_5-24_w4576'
-# FLAGS.dist_day = '2020/04/06'
-# FLAGS.dist_file = 'base_3-1_4-6_w1167'
+# FLAGS.dist_day = '2020/05/24'
+# FLAGS.dist_file = 'base_4-7_5-24_w4576'
+FLAGS.dist_day = '2020/04/06'
+FLAGS.dist_file = 'base_3-1_4-6_w1167'
 
-FLAGS.redist_flg = True
+FLAGS.redist_flg = False
+# FLAGS.redist_flg = True
 FLAGS.redist_from = ['20to44_1', '45to64_1']
 FLAGS.redist_to = ['20to44_2_tele1', '45to64_2_tele1']
-FLAGS.redist_ratio = ['0.25', '0.25'] # redistribute 10%
+# FLAGS.redist_ratio = ['0.25', '0.25'] # redistribute 7.5%
+# FLAGS.redist_ratio = ['0.5', '0.5'] # redistribute 15%
+# FLAGS.redist_ratio = ['0.75', '0.75'] # redistribute 22.5%
+FLAGS.redist_ratio = ['1.0', '1.0'] # redistribute 30%
 
 
-mode = True
-# mode = False
+# mode = True
+mode = False
 
 
 def sim(argv):
@@ -56,13 +60,15 @@ def sim(argv):
         #      'kanto_TL_GO_LI_for1200_' + datetime.now().strftime('%Y%m%d%H%M'))
         # calc(Izer_TL_GO_LI_kanto_with_dist, FLAGS,
         #      'kanto_after_' + datetime.now().strftime('%Y%m%d%H%M'))
-        calc(Izer_TL_GO_LI_kanto_with_dist, FLAGS,
-             'kanto_after_SOE_start_5-24_w4576_C5_' + datetime.now().strftime('%Y%m%d%H%M'))
+        calc(
+            Izer_TL_GO_LI_kanto_with_dist, FLAGS,
+            'kanto_after_SOE_start_4-7_w1167_delay_SoE_1w_' +
+            datetime.now().strftime('%Y%m%d%H%M'))
     else:
         names = [
             'base_3-1_4-6_w1167',
             'base_4-7_5-24_w4576',
-            'kanto_after_SOE_start_5-24_w4576_C6_202006061343',
+            'kanto_after_SOE_start_5-24_w4576_C2_20_64_red40_to_tele_202006101303',
         ]
         plots(names)
 
@@ -84,18 +90,22 @@ def plots(basenames):
     for name in basenames:
         historys.append(util.load_status(name))
 
-    util.show_history_list(historys,
-                           susceptible=False,
-                           infected=True,
-                           removed=True,
-                           use_def=False,
-                           tergets=['Tokyo'],
-                           filename='fig4_F',
-                           save=True,
-                           title=None,
-                        #    ylimit=[0, 5000],
-                        #    xlimit=[0, 85]
-                           )
+    util.show_history_list(
+        historys,
+        susceptible=False,
+        infected=True,
+        removed=True,
+        use_def=False,
+        tergets=[
+            'Tokyo', 'Chiba', 'Kanagawa', 'Saitama', 'Gunma', 'Tochigi',
+            'Ibaraki'
+        ],
+        filename='fig4_F',
+        save=False,
+        title=None,
+        #    ylimit=[0, 5000],
+        #    xlimit=[0, 85]
+    )
     # util.save_as_csv(status, basename)
 
 

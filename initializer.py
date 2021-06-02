@@ -145,17 +145,28 @@ class Default_Izer(Initializer):
         #     [datetime.date(2020, 5, 25), Day_Groups['5__week_SoE']],
         #     # [datetime.date(2020, 7, 31), Day_Groups['after_SoE']],
         # ]
-        start_date = datetime.date(2020, 5, 25)
+        start_date = datetime.date(2020, 4, 7)
         condition_list = [
             # [datetime.date(2020, 3, 20), Day_Groups['before_SoE']],
-            # [datetime.date(2020, 4, 7), Day_Groups['before_2_SoE']],
-            # [datetime.date(2020, 4, 14), Day_Groups['1week_SoE']],
-            # [datetime.date(2020, 4, 21), Day_Groups['2week_SoE']],
-            # [datetime.date(2020, 4, 28), Day_Groups['3week_SoE']],
-            # [datetime.date(2020, 5, 5), Day_Groups['4week_SoE']],
-            # [datetime.date(2020, 5, 25), Day_Groups['5__week_SoE']],
-            [datetime.date(2020, 7, 31), Day_Groups['after_SoE']],
+            [datetime.date(2020, 4, 14), Day_Groups['before_2_SoE']],
+            [datetime.date(2020, 4, 21), Day_Groups['1week_SoE']],
+            [datetime.date(2020, 4, 28), Day_Groups['2week_SoE']],
+            [datetime.date(2020, 5, 5), Day_Groups['3week_SoE']],
+            [datetime.date(2020, 5, 12), Day_Groups['4week_SoE']],
+            [datetime.date(2020, 6, 1), Day_Groups['5__week_SoE']],
+            # [datetime.date(2020, 7, 31), Day_Groups['after_SoE']],
         ]
+        # start_date = datetime.date(2020, 5, 25)
+        # condition_list = [
+        #     # [datetime.date(2020, 3, 20), Day_Groups['before_SoE']],
+        #     # [datetime.date(2020, 4, 7), Day_Groups['before_2_SoE']],
+        #     # [datetime.date(2020, 4, 14), Day_Groups['1week_SoE']],
+        #     # [datetime.date(2020, 4, 21), Day_Groups['2week_SoE']],
+        #     # [datetime.date(2020, 4, 28), Day_Groups['3week_SoE']],
+        #     # [datetime.date(2020, 5, 5), Day_Groups['4week_SoE']],
+        #     # [datetime.date(2020, 5, 25), Day_Groups['5__week_SoE']],
+        #     [datetime.date(2020, 7, 31), Day_Groups['after_SoE']],
+        # ]
 
         days = self._create_days(start_date, condition_list)
         srange = models.SimRange(days,
@@ -5878,9 +5889,17 @@ class Izer_TL_GO_LI_kanto_with_dist(Default_Izer):
                 'name':
                 'Tokyo',
                 'p_remove': {
+                    # 'before_SoE': [0.1, 0.01],
+                    # 'before_2_SoE': [0.1, 0.01],
+                    # '1week_SoE': [0.1, 0.01],
+                    # '2week_SoE': [0.1, 0.01],
+                    # '3week_SoE': [0.1, 0.01],
+                    # '4week_SoE': [0.1, 0.01],
+                    # '5__week_SoE': [0.1, 0.01],
+                    # 'after_SoE': [0.1, 0.01],
                     'before_SoE': [0.1, 0.01],
                     'before_2_SoE': [0.1, 0.01],
-                    '1week_SoE': [0.1, 0.1],
+                    '1week_SoE': [0.1, 0.01],
                     '2week_SoE': [0.12, 0.012],
                     '3week_SoE': [0.12, 0.012],
                     '4week_SoE': [0.14, 0.014],
@@ -6021,7 +6040,7 @@ class Izer_TL_GO_LI_kanto_with_dist(Default_Izer):
                 'p_remove': {
                     'before_SoE': [0.1, 0.01],
                     'before_2_SoE': [0.1, 0.01],
-                    '1week_SoE': [0.1, 0.1],
+                    '1week_SoE': [0.1, 0.01],
                     '2week_SoE': [0.12, 0.012],
                     '3week_SoE': [0.12, 0.012],
                     '4week_SoE': [0.14, 0.014],
@@ -6158,7 +6177,7 @@ class Izer_TL_GO_LI_kanto_with_dist(Default_Izer):
                 'p_remove': {
                     'before_SoE': [0.1, 0.01],
                     'before_2_SoE': [0.1, 0.01],
-                    '1week_SoE': [0.1, 0.1],
+                    '1week_SoE': [0.1, 0.01],
                     '2week_SoE': [0.12, 0.012],
                     '3week_SoE': [0.12, 0.012],
                     '4week_SoE': [0.14, 0.014],
@@ -6295,7 +6314,7 @@ class Izer_TL_GO_LI_kanto_with_dist(Default_Izer):
                 'p_remove': {
                     'before_SoE': [0.1, 0.01],
                     'before_2_SoE': [0.1, 0.01],
-                    '1week_SoE': [0.1, 0.1],
+                    '1week_SoE': [0.1, 0.01],
                     '2week_SoE': [0.12, 0.012],
                     '3week_SoE': [0.12, 0.012],
                     '4week_SoE': [0.14, 0.014],
@@ -6432,7 +6451,7 @@ class Izer_TL_GO_LI_kanto_with_dist(Default_Izer):
                 'p_remove': {
                     'before_SoE': [0.1, 0.01],
                     'before_2_SoE': [0.1, 0.01],
-                    '1week_SoE': [0.1, 0.1],
+                    '1week_SoE': [0.1, 0.01],
                     '2week_SoE': [0.12, 0.012],
                     '3week_SoE': [0.12, 0.012],
                     '4week_SoE': [0.14, 0.014],
@@ -6569,7 +6588,7 @@ class Izer_TL_GO_LI_kanto_with_dist(Default_Izer):
                 'p_remove': {
                     'before_SoE': [0.1, 0.01],
                     'before_2_SoE': [0.1, 0.01],
-                    '1week_SoE': [0.1, 0.1],
+                    '1week_SoE': [0.1, 0.01],
                     '2week_SoE': [0.12, 0.012],
                     '3week_SoE': [0.12, 0.012],
                     '4week_SoE': [0.14, 0.014],
@@ -6706,7 +6725,7 @@ class Izer_TL_GO_LI_kanto_with_dist(Default_Izer):
                 'p_remove': {
                     'before_SoE': [0.1, 0.01],
                     'before_2_SoE': [0.1, 0.01],
-                    '1week_SoE': [0.1, 0.1],
+                    '1week_SoE': [0.1, 0.01],
                     '2week_SoE': [0.12, 0.012],
                     '3week_SoE': [0.12, 0.012],
                     '4week_SoE': [0.14, 0.014],
@@ -6862,8 +6881,9 @@ class Izer_TL_GO_LI_kanto_with_dist(Default_Izer):
                 dist_info = self.redist_pop(dist_info)
             peaple = []
             for k, v in dist_info.items():
-                peaple.append(
-                    self.person_group(Peaple_Groups[k], k, 1, [v[0], v[1], v[2], 0]))
+                if not (v[0] == 0 and v[1] == 0 and v[2] == 0):
+                    peaple.append(
+                        self.person_group(Peaple_Groups[k], k, 1, [v[0], v[1], v[2], 0]))
 
             cc['peaple'] = peaple
 
@@ -6879,9 +6899,17 @@ class Izer_TL_GO_LI_kanto_with_dist(Default_Izer):
             if k in from_list:
                 s = sum(v.values())
                 index = from_list.index(k)
-                num = int(s * ratio_list[index])
-                redist_num_dic[k] = -num
-                redist_num_dic[to_list[index]] = num
+                if ratio_list[index] == 1.0:
+                    dist_info[to_list[index]][0] += v[0]
+                    dist_info[to_list[index]][1] += v[1]
+                    dist_info[to_list[index]][2] += v[2]
+                    v[0] = 0
+                    v[1] = 0
+                    v[2] = 0
+                else:
+                    num = int(s * ratio_list[index])
+                    redist_num_dic[k] = -num
+                    redist_num_dic[to_list[index]] = num
 
         for k, v in dist_info.items():
             if k in redist_num_dic:
